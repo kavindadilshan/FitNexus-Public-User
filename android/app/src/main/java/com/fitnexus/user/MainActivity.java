@@ -1,4 +1,4 @@
-package com.fitzky.fitzkyuser;
+package com.fitnexus.user;
 
 import android.os.Bundle;
 

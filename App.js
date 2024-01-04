@@ -24,7 +24,6 @@ import MobileSignOutForm from './src/userPages/Auth/SignOut/MobileSignOut/Mobile
 import SocialMediaSignUpForm from './src/userPages/Auth/SignOut/SocialMediaSignUp/SocialMediaSignUp';
 import HomeScreen from './src/userPages/Home/Home';
 import PurchasedScreen from './src/userPages/Purchased/Purchased';
-import ChatScreen from './src/userPages/Chat/Chat';
 import NotificationScreen from './src/userPages/Notifications/Notifications';
 import ProfileScreen from './src/userPages/Profile/Profile';
 import ConditionsForm from './src/userPages/Auth/Conditions/Conditions';
@@ -68,7 +67,6 @@ import ReserveSucessForm from './src/component/UIElement/ReserveSuccessForm';
 import DayPassDetailsForm from './src/userPages/Home/Gyms/DaayPassDetails';
 import HelpSubmitForm from './src/userPages/Profile/HelpSubmitForm';
 import InstructorTypesForm from './src/userPages/Home/Trainers/InstructorTypes';
-import GuestHomeForm from './src/userPages/Guest/GuestHome';
 import ScheduleForm from './src/userPages/Home/Business/Schedule';
 import PrivacyPolicyForm from './src/userPages/Profile/PrivacyPolicy';
 import GroupClassExplore from "./src/userPages/Home/Classes/Explore/GroupClassExplore";
@@ -77,7 +75,6 @@ import SubscriptionCheckout from "./src/userPages/Home/CheckOut/SubscriptionChec
 import MySubscriptions from "./src/userPages/Profile/MySubscriptions/MySubscriptions";
 import SubscriptionDetails from "./src/userPages/Profile/MySubscriptions/SubscriptionDetails";
 import EligibleClasses from "./src/userPages/Profile/MySubscriptions/EligibleClasses";
-import UpcomingSessions from "./src/userPages/Profile/MySubscriptions/UpcomingSessions";
 import MainUI from "./src/userPages/Home/Classes/MainUI";
 import UpdateSubscriptionCard from "./src/userPages/Profile/MySubscriptions/UpdateSubscriptionCard";
 
@@ -92,22 +89,18 @@ import LeftHomeBackIcon from './src/component/HeaderIcon/HeaderLeftHomeIcon';
 import {Color} from './src/constance/Colors';
 import homeClick from './src/assets/BottomTabs/ClickedState/homeClick.png';
 import purchasedClick from './src/assets/BottomTabs/ClickedState/purchasedClick.png';
-import chatClick from './src/assets/BottomTabs/ClickedState/chatClick.png';
 import notificationClick from './src/assets/BottomTabs/ClickedState/notificationClick.png';
 import profileClick from './src/assets/BottomTabs/ClickedState/profileClick.png';
 import home from './src/assets/BottomTabs/IdleState/home.png';
 import purchased from './src/assets/BottomTabs/IdleState/purchased.png';
-import chat from './src/assets/BottomTabs/IdleState/chat.png';
 import notification from './src/assets/BottomTabs/IdleState/notification.png';
 import profile from './src/assets/BottomTabs/IdleState/profile.png';
 import {Font} from './src/constance/AppFonts';
 import {StorageStrings} from './src/constance/StorageStrings';
 import SplashScreen from 'react-native-splash-screen';
 import ChatUI from './src/userPages/Chat/ChatUI/ChatUIContent';
-import axios from './src/axios/axios';
 import {PUBLIC_URL, SubUrl} from './src/axios/server_url';
 import * as actionTypes from './src/store/actions';
-import {AppToast} from './src/constance/AppToast';
 import Loading from './src/component/Loading/Loading';
 import AlertMassage from './src/component/Actions/AlertMassage2';
 import {fetch} from 'react-native-ssl-pinning';
@@ -184,7 +177,7 @@ class App extends React.Component {
         NetInfo.fetch().then(async state => {
             if (state.isConnected) {
                 if (await AsyncStorage.getItem(StorageStrings.LOGGED) === 'true') {
-                    this.checkOnlineClassVisibility();
+                    this.props.checkOnlineClassVisibility(false);
                 } else {
                     this.setState({continue: true});
                 }
@@ -211,62 +204,6 @@ class App extends React.Component {
             .catch(e => console.log(e))
     }
 
-
-    checkOnlineClassVisibility = async () => {
-        axios.get(SubUrl.check_online_class_visibility)
-            .then(async response => {
-                if (response.data.success) {
-                    const onlineClassVisible = response.data.body;
-                    this.props.checkOnlineClassVisibility(onlineClassVisible);
-                    this.setState({continue: true});
-                } else {
-                    if (response.data.message === 'Public user not found') {
-                        this.setState({continue: true});
-                        this.props.sdkInitialized(true);
-                        this.props.fetchEndpoint(true);
-                        this.props.changeLatitude(0);
-                        this.props.changeLongitude(0);
-                        this.props.fetchOnlineClasses(true);
-                        this.props.fetchOfflineClasses(true);
-                        this.props.fetchTrainer(true);
-                        this.props.checkCorporateState(false);
-                        this.props.setCorporateName([]);
-                        await AsyncStorage.clear();
-                    } else {
-                        setTimeout(() => {
-                            this.checkOnlineClassVisibility();
-                        }, 1000)
-                    }
-                    // AppToast.serverErrorToast();
-
-                }
-            })
-            .catch(async error => {
-                count = count + 1;
-                if (count > 5) {
-                    this.setState({continue: true});
-                    this.props.sdkInitialized(true);
-                    this.props.fetchEndpoint(true);
-                    this.props.changeLatitude(0);
-                    this.props.changeLongitude(0);
-                    this.props.fetchOnlineClasses(true);
-                    this.props.fetchOfflineClasses(true);
-                    this.props.checkCorporateState(false);
-                    this.props.setCorporateName([]);
-                    await AsyncStorage.clear();
-                } else {
-                    if (count === 1) {
-                        setTimeout(() => {
-                            this.checkOnlineClassVisibility();
-                        }, 1000)
-                    } else {
-                        this.checkOnlineClassVisibility();
-                    }
-
-                }
-            });
-    };
-
     hideAlert = () => {
         this.setState({isNetworkDisabled: false});
         RNRestart.Restart();
@@ -276,14 +213,7 @@ class App extends React.Component {
     render() {
         return (
             <>
-                {this.state.continue ?
-                    this.props.visible ? (
-                        <AppContainer screenProps={{count: this.props.notificationCount}}/>
-                    ) : (
-                        <AppContainer2 screenProps={{count: this.props.notificationCount}}/>
-                    )
-                    : null
-                }
+                <AppContainer2 screenProps={{count: this.props.notificationCount}}/>
                 <Loading isVisible={this.props.payload}/>
                 <AlertMassage
                     show={this.state.isNetworkDisabled}
@@ -294,80 +224,6 @@ class App extends React.Component {
         );
     }
 }
-
-
-export const BottomNavigator = createMaterialBottomTabNavigator({
-        Home: {
-            screen: HomeScreen,
-            navigationOptions: {
-                tabBarLabel: <Text style={{fontFamily: Font.SemiBold}}>Home</Text>,
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Image source={focused ? homeClick : home} style={styles.tabBarIcon} resizeMode={'contain'}/>
-                ),
-            },
-        },
-        Purchased: {
-            screen: PurchasedScreen,
-            navigationOptions: {
-                tabBarLabel: <Text style={{fontFamily: Font.SemiBold}}>Purchases</Text>,
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Image source={focused ? purchasedClick : purchased} style={styles.tabBarIcon} resizeMode={'contain'}/>
-                ),
-            },
-        },
-        Chat: {
-            screen: ChatScreen,
-            navigationOptions: {
-                tabBarLabel: <Text style={{fontFamily: Font.SemiBold}}>Chat</Text>,
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Image source={focused ? chatClick : chat} style={styles.tabBarIcon}/>
-                ),
-            },
-        },
-        Notifications: {
-            screen: NotificationScreen,
-            navigationOptions: ({navigation, navigationOptions, screenProps}) => {
-                return {
-                    // Step2. here use screenProps to retrieve the value passed in .
-                    tabBarLabel: <Text style={{fontFamily: Font.SemiBold}}>Notifications</Text>,
-                    tabBarIcon: ({tintColor, focused}) => (
-                        <View>
-                            <Image source={focused ? notificationClick : notification} style={styles.tabBarIcon}
-                                   resizeMode={'contain'}/>
-                            {screenProps.count !== 0 ? !focused ? (
-                                <View style={styles.notification}>
-                                    {screenProps.count <= 99 ? (
-                                        <Text style={styles.notificationCount}>{screenProps.count}</Text>
-                                    ) : (
-                                        <Text style={styles.notificationCount}>99+</Text>
-                                    )}
-
-                                </View>
-                            ) : null : null}
-
-                        </View>
-                    ),
-                };
-            },
-        },
-        Profile: {
-            screen: ProfileScreen,
-            navigationOptions: {
-                tabBarLabel: <Text style={{fontFamily: Font.SemiBold}}>Profile</Text>,
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Image source={focused ? profileClick : profile} style={styles.tabBarIcon} resizeMode={'contain'}/>
-                ),
-            },
-        },
-    },
-    {
-        initialRouteName: 'Home',
-        activeColor: Color.black,
-        inactiveColor: '#C7C7C7',
-        barStyle: styles.barStyle,
-        shifting: false,
-    },
-);
 
 export const BottomNavigator2 = createMaterialBottomTabNavigator({
         Home: {
@@ -432,559 +288,6 @@ export const BottomNavigator2 = createMaterialBottomTabNavigator({
         shifting: false,
     },
 );
-
-export const ContactStack = createStackNavigator({
-
-    SplashScreen: {
-        screen: SplashScreen2,
-        navigationOptions: {
-            header: null,
-        },
-    },
-
-    conditionsForm: {
-        screen: ConditionsForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-
-    LandingForm: {
-        screen: LandingForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-
-    AuthForm: {
-        screen: AuthForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-
-    },
-
-    SignOutForm: {
-        screen: SignOutForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    PinVerifyForm: {
-        screen: PinVerifyForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Verify',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    MobileSignOutForm: {
-        screen: MobileSignOutForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerLeft: null,
-        }),
-    },
-    SocialMediaSignUp: {
-        screen: SocialMediaSignUpForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerLeft: null,
-        }),
-    },
-    GuestHomeForm: {
-        screen: GuestHomeForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    BottomNavigation: {
-        screen: BottomNavigator,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    WelcomeForm: {
-        screen: WelcomeForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    MainUI: {
-        screen: MainUI,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    Sessions: {
-        screen: SessionsForm,
-        navigationOptions: ({navigation}) => ({
-            // headerStyle: styles.header,
-            // headerLeft: <LeftHomeBackIcon navigation={navigation} />,
-            // headerTitle: navigation.getParam('className', ''),
-            // headerTitleStyle: { fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75 },
-            header: null
-        }),
-    },
-    GroupClassExplore: {
-        screen: GroupClassExplore,
-        navigationOptions: ({navigation}) => ({
-            // headerStyle: styles.header,
-            // headerLeft: <LeftHomeBackIcon navigation={navigation} />,
-            // headerTitle: 'Online Group Class',
-            // headerTitleStyle: { fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75 },
-            header: null
-        }),
-    },
-    SelectedDetails: {
-        screen: SelectedDetailsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerRight: <RightContIcon count1={navigation.getParam('maxJoiners', '')}
-                                        count2={navigation.getParam('availableCount', '')}/>,
-            headerTitle: 'Session',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    GymProfileForm: {
-        screen: GymProfileForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('gymName', ''),
-            headerTitleStyle: {fontSize: 18, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    GymsForm: {
-        screen: GymsForm,
-        navigationOptions: ({navigation}) => ({
-            // headerStyle: styles.header,
-            // headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            // headerTitle: 'Gyms around you',
-            // headerTitleStyle: {fontSize: 23, fontFamily: Font.SemiBold},
-            header: null
-        }),
-    },
-    MembershipForm: {
-        screen: MembershipForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: 'Membership Packages',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    MembershipCheckOutForm: {
-        screen: MembershipCheckOutForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'CheckOut',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-
-    SubscriptionCheckout: {
-        screen: SubscriptionCheckout,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: 'CheckOut',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-
-    MembershipDetailsForm: {
-        screen: MembershipDetailsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Membership Details',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    ReviewForm: {
-        screen: ReviewForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Reviews',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    RateForm: {
-        screen: RateForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: null,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Write a Review',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    DualRatingForm: {
-        screen: DualRatingForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Write a Review',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    UpdatePasswordForm: {
-        screen: UpdatePasswordForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdateMobileForm: {
-        screen: UpdateMobileForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdateEmailForm: {
-        screen: UpdateEmailForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdateCardForm: {
-        screen: UpdateCardForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerTitle: 'My Cards',
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    PrivacyPolicyForm: {
-        screen: PrivacyPolicyForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    MyMembershipsForm: {
-        screen: MyMembershipsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    MySubscriptions: {
-        screen: MySubscriptions,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    SubscriptionDetails: {
-        screen: SubscriptionDetails,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Subscription Details',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdateSubscriptionCard: {
-        screen: UpdateSubscriptionCard,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Update Card',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    EligibleClasses: {
-        screen: EligibleClasses,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('HeaderTitle', ''),
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpcomingSessions: {
-        screen: UpcomingSessions,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Upcoming Classes',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    OtpRequestForm: {
-        screen: OtpRequestForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Forgot Password',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-
-    ForgotPWForm: {
-        screen: ForgotPWForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Forgot Password',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    FitnessForm: {
-        screen: FitnessForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Fitness Categories',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    ClassesDetailsForm: {
-        screen: ClassesDetailsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: 'Class',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    InstructorForm: {
-        screen: InstructorForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('trainerName', ''),
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    PackagesForm: {
-        screen: PackagesForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerTitle: 'Packages',
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-
-    SubscriptionTrainers: {
-        screen: SubscriptionTrainers,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Trainers',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-
-    TrainersForm: {
-        screen: TrainersForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerRight: <RightInfoIcon navigation={navigation}/>,
-            headerTitle: 'Online Coaching',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold},
-        }),
-    },
-    BusinessProfile: {
-        screen: BusinessProfileForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('BusinessName', ''),
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    ScheduleForm: {
-        screen: ScheduleForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('BusinessName', ''),
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    CardAddedForm: {
-        screen: CardAddedAlertForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    ReserveSuccessForm: {
-        screen: ReserveSucessForm,
-        navigationOptions: {
-            header: null,
-        },
-    },
-    CardAddedFailForm: {
-        screen: CardAddedFailForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: null,
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-
-        }),
-    },
-    CheckOutForm: {
-        screen: CheckOutForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Checkout',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    CheckOut2Form: {
-        screen: CheckOut2Form,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Checkout',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    UpCommingClassesForm: {
-        screen: UpCommingClassesForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Upcoming Classes',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    InviteFriendForm: {
-        screen: InviteFriend,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    ViewMoreForm: {
-        screen: ViewMoreForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('role', ''),
-            headerTitleStyle: {fontSize: 18, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
-    },
-    HelpAndSupportForm: {
-        screen: HelpAndSupportForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    YourInvitesForm: {
-        screen: YourInvitesForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdatePersonalInfo: {
-        screen: UpdatePersonalInfo,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Profile',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    ChatUI: {
-        screen: ChatUI,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon2 navigation={navigation} removeListner={navigation.getParam('removeListner')}/>,
-            headerTitle: navigation.getParam('userName', ''),
-            headerTitleStyle: {fontSize: 18, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    BusinessMembershipsForm: {
-        screen: BusinessMembershipsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('BusinessName', ''),
-            headerTitleStyle: {fontSize: 18, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    DayPassCheckOutForm: {
-        screen: DayPassCheckOutForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Checkout',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    DayPassDetailsForm: {
-        screen: DayPassDetailsForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Day Pass Details',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    HelpSubmitForm: {
-        screen: HelpSubmitForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: null,
-            headerRight: <RightCloseIcon navigation={navigation}/>,
-            headerTitle: 'Any questions?',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    InstructorTypesForm: {
-        screen: InstructorTypesForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Coach Categories',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-
-}, {
-    headerLayoutPreset: 'center',
-    // initialRouteName:'MainUI',
-});
 
 export const ContactStack2 = createStackNavigator({
 
@@ -1052,13 +355,6 @@ export const ContactStack2 = createStackNavigator({
             headerRight: <RightCloseIcon navigation={navigation}/>,
             headerLeft: null,
         }),
-    },
-    GuestHomeForm: {
-        screen: GuestHomeForm,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
     },
     BottomNavigation: {
         screen: BottomNavigator2,
@@ -1534,7 +830,6 @@ export const ContactStack2 = createStackNavigator({
 });
 
 
-const AppContainer = createAppContainer(ContactStack);
 const AppContainer2 = createAppContainer(ContactStack2);
 
 const mapStateToProps = (state) => ({

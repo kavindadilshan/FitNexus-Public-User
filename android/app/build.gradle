@@ -141,7 +141,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fitzky.fitzkyuser"
+        applicationId "com.fitnexus.user"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 229

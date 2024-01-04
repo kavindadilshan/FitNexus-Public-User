@@ -70,7 +70,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:216718697638:android:64a952c9e2d8b512",
         "android_client_info": {
-          "package_name": "com.fitzky.fitzkyuser"
+          "package_name": "com.fitnexus.user"
         }
       },
       "oauth_client": [
@@ -78,7 +78,7 @@
           "client_id": "216718697638-7smikd5msdv8ocl3lcod7sar24vcjiqh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.fitzky.fitzkyuser",
+            "package_name": "com.fitnexus.user",
             "certificate_hash": "6769e40f126b994a2a33cecb5be989c90a730e68"
           }
         },
@@ -86,7 +86,7 @@
           "client_id": "216718697638-5emir7njd7mpg31r8gjd93nklgmbnsbl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.fitzky.fitzkyuser",
+            "package_name": "com.fitnexus.user",
             "certificate_hash": "24dc31efa017de8547f0bd581041c8f2f78c15cb"
           }
         },
@@ -94,7 +94,7 @@
           "client_id": "216718697638-i75280f9qfmf7m7pmtpmjkfomcgav3h5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.fitzky.fitzkyuser",
+            "package_name": "com.fitnexus.user",
             "certificate_hash": "28be4eaec074fab5ef205b7e2f68fd2d09ffc60e"
           }
         },
