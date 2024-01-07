@@ -67,7 +67,7 @@ class App extends React.Component {
                 </View>
 
                 <View style={{ width: '100%', alignItems: 'center' }}>
-
+                    <ImageSlider onPress={() => this.onButtonClick()} />
                 </View>
 
 
