@@ -197,12 +197,35 @@ class App extends React.Component {
 
 
     /**
+     * update onesignal push notification user token
+     * */
+    updatePushNotificationToken = async () => {
+
+        let uniqueId = DeviceInfo.getUniqueId();
+        const data = {
+            userId: Number(await AsyncStorage.getItem(StorageStrings.USER_ID)),
+            token: this.props.userId,
+            deviceType: Platform.OS.toUpperCase(),
+            deviceMac: uniqueId
+        }
+
+        axios3.post(SubUrl.update_push_notification_token_of_user, data)
+            .then(async response => {
+
+            })
+            .catch(error => {
+
+            })
+
+    };
+
+    /**
      * rest navigation
      * @param page
      * @param parameters
      */
     resetNavigationAction = (page, parameters) => {
-
+        this.updatePushNotificationToken();
         if (page !== '') {
             const resetAction = StackActions.reset({
                 index: 0,
