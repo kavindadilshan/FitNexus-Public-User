@@ -150,7 +150,43 @@ class App extends React.Component {
 
 
 
+    /**
+     * google login
+     */
+    _signIn = async (navigate) => {
+        this.setState({googleLoading: true});
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            const currentUser = await GoogleSignin.getCurrentUser();
 
+            const data = {
+                type: 'GOOGLE',
+                userId: currentUser.user.id,
+                firstName: currentUser.user.givenName,
+                lastName: currentUser.user.familyName,
+                email: currentUser.user.email,
+                profileImage: currentUser.user.photo,
+                authToken: currentUser.idToken,
+            };
+            this.socialMediaLogin(navigate, data);
+
+        } catch (error) {
+            switch (error.code) {
+                case statusCodes.IN_PROGRESS:
+                    Toast.show('Google sign in already in progress.');
+                    break;
+                case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+                    Toast.show('Google play services not available.');
+                    break;
+                // case statusCodes.SIGN_IN_CANCELLED:
+                //     Toast.show('Google sign in cancelled.');
+                //     break;
+            }
+            this.setState({googleLoading: false});
+            console.log(error);
+        }
+    };
 
     /**
      *normal login
