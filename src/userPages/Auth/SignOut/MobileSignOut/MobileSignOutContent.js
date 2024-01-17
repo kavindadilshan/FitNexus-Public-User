@@ -68,7 +68,131 @@ class App extends React.Component {
     };
 
     saveInputState = async (navigate) => {
+        const firstName = this.state.firstName;
+        const lastName = this.state.lastName;
+        const email = this.state.email;
+        const password = this.state.password;
+        const confirmPW = this.state.confirmPW;
+        const gender = this.state.genderType;
 
+        firstName.valid = Validation.textFieldValidator(firstName.value.trim(), 1);
+        lastName.valid = Validation.textFieldValidator(lastName.value.trim(), 1);
+        email.valid = Validation.emailValidator(email.value.trim());
+        password.valid = Validation.specialPwValidator(password.value.trim());
+        gender.valid = Validation.genderValidator(this.state.genderType.value);
+
+
+        if (confirmPW.value === "") {
+            this.setState({message1: 'Confirm Password text is missing'});
+            confirmPW.valid = false
+        } else if (password.value === confirmPW.value) {
+            confirmPW.valid = true
+        } else {
+            this.setState({message1: 'Not match with new password'});
+            confirmPW.valid = false
+        }
+
+        this.setState({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            confirmPW: confirmPW,
+            genderType: gender
+        });
+
+        const {navigation} = this.props;
+        const mobile = navigation.getParam('mobile');
+        const otp = navigation.getParam('otp');
+
+        if (this.state.firstName.valid && this.state.lastName.valid && this.state.email.valid && this.state.password.valid && this.state.confirmPW.valid) {
+            const data = {
+                firstName: this.state.firstName.value,
+                lastName: this.state.lastName.value,
+                email: this.state.email.value,
+                password: this.state.password.value,
+                mobile: mobile,
+                otpDetails: {
+                    otp: otp,
+                },
+                gender: this.state.genderType.value,
+                country: await AsyncStorage.getItem(StorageStrings.COUNTRY),
+                referralFrom: this.state.referralCode.value !== '' ? this.state.referralCode.value : null
+            }
+            this.setState({loading: true})
+            axios.post(SubUrl.register_mobile_user, data)
+                .then(async response => {
+                    if (response.data.success) {
+                        await AsyncStorage.setItem(StorageStrings.LOGGED, 'true');
+                        await AsyncStorage.setItem(StorageStrings.ACCESS_TOKEN, response.data.body.access_token);
+                        await AsyncStorage.setItem(StorageStrings.REFRESH_TOKEN, response.data.body.refresh_token);
+                        await AsyncStorage.setItem(StorageStrings.USER_ID, response.data.body.user.userDetails.id.toString());
+                        await AsyncStorage.setItem(StorageStrings.MOBILE_NUMBER, encryption.encrypt(response.data.body.user.userDetails.mobile));
+                        await AsyncStorage.setItem(StorageStrings.EMAIL, encryption.encrypt(response.data.body.user.userDetails.email));
+                        await AsyncStorage.setItem(StorageStrings.FIRST_NAME, encryption.encrypt(response.data.body.user.userDetails.firstName));
+                        await AsyncStorage.setItem(StorageStrings.LAST_NAME, encryption.encrypt(response.data.body.user.userDetails.lastName));
+                        if (response.data.body.user.userDetails.gender !== null) {
+                            await AsyncStorage.setItem(StorageStrings.GENDER, encryption.encrypt(response.data.body.user.userDetails.gender));
+                        }
+                        if (response.data.body.user.userDetails.image !== null) {
+                            await AsyncStorage.setItem(StorageStrings.USER_IMAGE, encryption.encrypt(response.data.body.user.userDetails.image));
+                        }
+                        if (response.data.body.user.userDetails.dateOfBirth !== null) {
+                            await AsyncStorage.setItem(StorageStrings.BIRTHDAY, encryption.encrypt(response.data.body.user.userDetails.dateOfBirth));
+                        }
+                        if (response.data.body.user.userDetails.height !== null) {
+                            await AsyncStorage.setItem(StorageStrings.HEIGHT, encryption.encrypt(response.data.body.user.userDetails.height))
+                        }
+                        if (response.data.body.user.userDetails.weight !== null) {
+                            await AsyncStorage.setItem(StorageStrings.WEIGHT, encryption.encrypt(response.data.body.user.userDetails.weight))
+                        }
+                        if (response.data.body.user.userDetails.verificationNo !== null) {
+                            await AsyncStorage.setItem(StorageStrings.NIC, encryption.encrypt(response.data.body.user.userDetails.verificationNo))
+                        }
+                        if (response.data.body.user.userDetails.country !== null) {
+                            await AsyncStorage.setItem(StorageStrings.COUNTRY, encryption.encrypt(response.data.body.user.userDetails.country))
+                        }
+                        if (response.data.body.user.userDetails.referralCode !== null) {
+                            await AsyncStorage.setItem(StorageStrings.INVITE_CODE, encryption.encrypt(response.data.body.user.userDetails.referralCode))
+                        }
+                        if (response.data.body.user.userDetails.authType !== null) {
+                            await AsyncStorage.setItem(StorageStrings.AUTH_TYPE, response.data.body.user.userDetails.authType)
+                        }
+                        this.resetNavigationAction('', '');
+                        this.setState({loading: false})
+                    } else {
+                        if (response.data.message === 'Email already exists') {
+                            this.setState({
+                                massage: 'Email already exists',
+                                email: {
+                                    valid: false
+                                },
+                                loading: false
+                            })
+                            this.setState({loading: false})
+                        } else if (response.data.message === 'Invalid referral code') {
+                            this.setState({
+                                loading: false,
+                                referralCodeMsg: response.data.message,
+                                referralCode: {value: '', valid: false}
+                            })
+                        } else {
+                            this.setState({loading: false});
+                            Toast.show(response.data.message);
+                        }
+                    }
+
+
+                })
+                .catch(error => {
+                    this.setState({loading: false})
+                    if (error.response.status === 401) {
+                        AppToast.serverErrorToast();
+                    } else {
+                        AppToast.networkErrorToast()
+                    }
+                })
+        }
     }
 
 
