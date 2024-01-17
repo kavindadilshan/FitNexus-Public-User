@@ -243,7 +243,66 @@ class App extends React.Component {
             socialMediaToken: value.authToken,
             authType: value.type,
         };
-        
+        this.setState({isProcessing: true});
+        axios2.post(SubUrl.public_user_login, data)
+            .then(async response => {
+                if (response.data.message === 'User not found' || response.data.message === 'Authentication failed. Failed to validate with auth providers.') {
+                    // AppToast.userNotFoundToast();
+                    this.setState({
+                        socialMediaData: value,
+                        fbLoading: false,
+                        googleLoading: false,
+                        appleLoading: false,
+                        isProcessing: false,
+                        showAlert: true,
+                    });
+                } else if (response.data.success) {
+                    await AsyncStorage.setItem(StorageStrings.LOGGED, 'true');
+                    await AsyncStorage.setItem(StorageStrings.ACCESS_TOKEN, response.data.body.access_token);
+                    await AsyncStorage.setItem(StorageStrings.REFRESH_TOKEN, response.data.body.refresh_token);
+                    await AsyncStorage.setItem(StorageStrings.USER_ID, response.data.body.user.userDetails.id.toString());
+                    await AsyncStorage.setItem(StorageStrings.MOBILE_NUMBER, encryption.encrypt(response.data.body.user.userDetails.mobile));
+                    await AsyncStorage.setItem(StorageStrings.EMAIL, encryption.encrypt(response.data.body.user.userDetails.email));
+                    await AsyncStorage.setItem(StorageStrings.FIRST_NAME, encryption.encrypt(response.data.body.user.userDetails.firstName));
+                    await AsyncStorage.setItem(StorageStrings.LAST_NAME, encryption.encrypt(response.data.body.user.userDetails.lastName));
+                    if (response.data.body.user.userDetails.gender !== null) {
+                        await AsyncStorage.setItem(StorageStrings.GENDER, encryption.encrypt(response.data.body.user.userDetails.gender));
+                    }
+                    if (response.data.body.user.userDetails.image !== null) {
+                        await AsyncStorage.setItem(StorageStrings.USER_IMAGE, encryption.encrypt(response.data.body.user.userDetails.image));
+                    }
+                    if (response.data.body.user.userDetails.dateOfBirth !== null) {
+                        await AsyncStorage.setItem(StorageStrings.BIRTHDAY, encryption.encrypt(response.data.body.user.userDetails.dateOfBirth));
+                    }
+                    if (response.data.body.user.userDetails.height !== null) {
+                        await AsyncStorage.setItem(StorageStrings.HEIGHT, encryption.encrypt(response.data.body.user.userDetails.height));
+                    }
+                    if (response.data.body.user.userDetails.weight !== null) {
+                        await AsyncStorage.setItem(StorageStrings.WEIGHT, encryption.encrypt(response.data.body.user.userDetails.weight));
+                    }
+                    if (response.data.body.user.userDetails.verificationNo !== null) {
+                        await AsyncStorage.setItem(StorageStrings.NIC, encryption.encrypt(response.data.body.user.userDetails.verificationNo));
+                    }
+                    if (response.data.body.user.userDetails.country !== null) {
+                        await AsyncStorage.setItem(StorageStrings.COUNTRY, encryption.encrypt(response.data.body.user.userDetails.country));
+                    }
+                    if (response.data.body.user.userDetails.referralCode !== null) {
+                        await AsyncStorage.setItem(StorageStrings.INVITE_CODE, encryption.encrypt(response.data.body.user.userDetails.referralCode));
+                    }
+                    if (response.data.body.user.userDetails.authType !== null) {
+                        await AsyncStorage.setItem(StorageStrings.AUTH_TYPE, response.data.body.user.userDetails.authType);
+                    }
+                    const {navigate} = this.props.navigation;
+                    navigate('Home');
+                } else {
+                    this.setState({fbLoading: false, googleLoading: false, appleLoading: false, isProcessing: false});
+                    Toast.show('Social sign in failed!');
+                }
+            })
+            .catch(error => {
+                this.setState({fbLoading: false, googleLoading: false, appleLoading: false, isProcessing: false});
+                AppToast.networkErrorToast();
+            });
     };
 
     /**
