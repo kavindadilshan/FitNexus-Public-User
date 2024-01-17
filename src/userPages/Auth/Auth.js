@@ -148,7 +148,66 @@ class App extends React.Component {
 
     };
 
+    /**
+     * fb login
+     */
+    fbLogin(navigate) {
+        const app = this;
+        this.setState({fbLoading: true});
+        LoginManager.logInWithPermissions(['public_profile']).then(
+            function (result) {
+                if (result.isCancelled) {
+                    app.setState({fbLoading: false});
+                } else {
+                    AccessToken.getCurrentAccessToken().then(
+                        (data) => {
+                            let accessToken = data.accessToken;
 
+                            async function responseInfoCallback(error, result) {
+                                if (error) {
+                                    app.setState({fbLoading: false});
+                                } else {
+                                    const data = {
+                                        type: 'FACEBOOK',
+                                        userId: result.id,
+                                        name: result.name,
+                                        firstName: result.first_name,
+                                        lastName: result.last_name,
+                                        email: result.email,
+                                        profileImage: `https://graph.facebook.com/${result.id}/picture?type=large&width=300&height=300`,
+                                        authToken: accessToken,
+                                    };
+                                    app.socialMediaLogin(navigate, data);
+                                }
+                            };
+
+                            const infoRequest = new GraphRequest(
+                                '/me',
+                                {
+                                    accessToken: accessToken,
+                                    parameters: {
+                                        fields: {
+                                            string: 'id,first_name,last_name,picture',
+                                        },
+                                    },
+                                },
+                                responseInfoCallback,
+                            );
+
+                            // Start the graph request.
+                            new GraphRequestManager().addRequest(infoRequest).start();
+
+
+                        },
+                    );
+                }
+            },
+            function (error) {
+                App.setState({fbLoading: false});
+                AppToast.loginFailedToast();
+            },
+        );
+    }
 
     /**
      * google login
