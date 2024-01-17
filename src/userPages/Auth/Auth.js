@@ -150,6 +150,8 @@ class App extends React.Component {
 
 
 
+
+
     /**
      *normal login
      */
@@ -231,7 +233,18 @@ class App extends React.Component {
 
     };
 
-
+    /**
+     *social media login endpoint
+     * get userId,token,social type in fb and google
+     */
+    socialMediaLogin = async (navigate, value) => {
+        const data = {
+            socialMediaId: value.userId,
+            socialMediaToken: value.authToken,
+            authType: value.type,
+        };
+        
+    };
 
     /**
      * update onesignal push notification user token
@@ -583,7 +596,29 @@ class App extends React.Component {
                             </TouchableOpacity>
                         </View>
 
+                            <View style={{width: '100%', alignItems: 'center'}}>
 
+                                <SocialMediaButton
+                                    text={'Sign in with Google'}
+                                    onPress={() => this.onButtonClick('google')}
+                                    loading={this.state.googleLoading}
+                                    image={Google}
+                                    apple={false}
+                                />
+                                <View style={{
+                                    width: '100%',
+                                    alignItems: 'center',
+                                    marginBottom: screenHeight / 100 * 10,
+                                }}>
+                                    <SocialMediaButton
+                                        text={'Sign in with Facebook'}
+                                        onPress={() => this.onButtonClick('fb')}
+                                        loading={this.state.fbLoading}
+                                        image={FB}
+                                        apple={false}
+                                    />
+                                </View>
+                            </View>
 
 
                     </View>
