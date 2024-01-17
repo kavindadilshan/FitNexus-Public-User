@@ -156,6 +156,78 @@ class App extends React.Component {
     mobileUserLogin = async (mobileNumber) => {
         this.setState({isProcessing: true});
         const {navigate} = this.props.navigation;
+        const details = {
+            'username': mobileNumber,
+            'password': this.state.password.value,
+            'grant_type': 'password',
+        };
+        let formBody = [];
+        for (const property in details) {
+            const encodedKey = encodeURIComponent(property);
+            const encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + '=' + encodedValue);
+        }
+        formBody = formBody.join('&');
+
+        axios.post(SubUrl.auth, formBody)
+            .then(async response => {
+                await AsyncStorage.setItem(StorageStrings.LOGGED, 'true');
+                await AsyncStorage.setItem(StorageStrings.ACCESS_TOKEN, response.data.access_token);
+                await AsyncStorage.setItem(StorageStrings.REFRESH_TOKEN, response.data.refresh_token);
+                await AsyncStorage.setItem(StorageStrings.USER_ID, response.data.user.userDetails.id.toString());
+                await AsyncStorage.setItem(StorageStrings.MOBILE_NUMBER, encryption.encrypt(response.data.user.userDetails.mobile));
+                if (response.data.user.userDetails.email !== null) {
+                    await AsyncStorage.setItem(StorageStrings.EMAIL, encryption.encrypt(response.data.user.userDetails.email));
+                }
+                await AsyncStorage.setItem(StorageStrings.FIRST_NAME, encryption.encrypt(response.data.user.userDetails.firstName));
+                await AsyncStorage.setItem(StorageStrings.LAST_NAME, encryption.encrypt(response.data.user.userDetails.lastName));
+                if (response.data.user.userDetails.image !== null) {
+                    await AsyncStorage.setItem(StorageStrings.USER_IMAGE, encryption.encrypt(response.data.user.userDetails.image));
+                }
+                await AsyncStorage.setItem(StorageStrings.PASSWORD, encryption.encrypt(this.state.password.value));
+                if (response.data.user.userDetails.gender !== null) {
+                    await AsyncStorage.setItem(StorageStrings.GENDER, encryption.encrypt(response.data.user.userDetails.gender));
+                }
+                if (response.data.user.userDetails.dateOfBirth !== null) {
+                    await AsyncStorage.setItem(StorageStrings.BIRTHDAY, encryption.encrypt(response.data.user.userDetails.dateOfBirth));
+                }
+                if (response.data.user.userDetails.height.toString() !== null) {
+                    await AsyncStorage.setItem(StorageStrings.HEIGHT, encryption.encrypt(response.data.user.userDetails.height));
+                }
+                if (response.data.user.userDetails.weight.toString() !== null) {
+                    await AsyncStorage.setItem(StorageStrings.WEIGHT, encryption.encrypt(response.data.user.userDetails.weight));
+                }
+                if (response.data.user.userDetails.verificationNo !== null) {
+                    await AsyncStorage.setItem(StorageStrings.NIC, encryption.encrypt(response.data.user.userDetails.verificationNo));
+                }
+                if (response.data.user.userDetails.country !== null) {
+                    await AsyncStorage.setItem(StorageStrings.COUNTRY, encryption.encrypt(response.data.user.userDetails.country));
+                }
+                if (response.data.user.userDetails.referralCode !== null) {
+                    await AsyncStorage.setItem(StorageStrings.INVITE_CODE, encryption.encrypt(response.data.user.userDetails.referralCode));
+                }
+                if (response.data.user.userDetails.authType !== null) {
+                    await AsyncStorage.setItem(StorageStrings.AUTH_TYPE, response.data.user.userDetails.authType);
+                }
+                this.setState({
+                    password: {
+                        value: '',
+                        valid: true,
+                    },
+                    value: '',
+                });
+                navigate('Home');
+            })
+            .catch(error => {
+                if (error.response.data.message === 'You have entered an invalid username or password') {
+                    Toast.show('You have entered an invalid username or password');
+                } else if (error.response.data.message === 'You have reached the maximum number of sign-in attempts, please try again 1 hour later.') {
+                    Toast.show('You have reached the maximum number of sign-in attempts, please try again 1 hour later.');
+                } else {
+                    AppToast.networkErrorToast();
+                }
+                this.setState({isProcessing: false});
+            });
 
     };
 
