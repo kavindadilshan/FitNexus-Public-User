@@ -358,7 +358,25 @@ class App extends React.Component {
                         });
                     this.setState({loading: false});
                 } else {
-
+                    if (response.data.message === 'Mobile number already exists') {
+                        Toast.show(response.data.message);
+                        this.setState({loading: false});
+                    } else if (response.data.message === 'Email already exists') {
+                        Toast.show(response.data.message);
+                        this.setState({loading: false});
+                    } else if (response.data.message === 'Social media account already exists') {
+                        Toast.show(response.data.message);
+                        this.setState({loading: false});
+                    } else if (response.data.message === 'Invalid referral code') {
+                        this.setState({
+                            loading: false,
+                            referralCodeMsg: response.data.message,
+                            referralCode: {value: '', valid: false},
+                        });
+                    } else {
+                        Toast.show(response.data.message);
+                        this.setState({loading: false});
+                    }
                 }
 
             })
