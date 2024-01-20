@@ -15,13 +15,17 @@ import {StorageStrings} from '../../../../constance/StorageStrings';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../../store/actions';
 import * as Validation from '../../../Validation/Validation';
+import axios from '../../../../axios/axios_token_less';
 import {SubUrl} from '../../../../axios/server_url';
 import PhoneInput from 'react-native-phone-input';
 import CountryPicker from '../../../../component/Lib/react-native-country-picker-modal';
+import Toast from 'react-native-simple-toast';
 import Button from '../../../../component/Actions/Button';
 import {Font} from '../../../../constance/AppFonts';
+import {AppToast} from '../../../../constance/AppToast';
 import CustomPicker from '../../../../component/CustomPicker/CustomPicker';
 import {styles as styles2} from '../../styles';
+import {encryption} from '../../../../component/Encryption/Encrypt&Decrypt';
 import {NavigationActions, StackActions} from 'react-navigation';
 import DeviceInfo from 'react-native-device-info';
 import axios3 from '../../../../axios/axios';
@@ -243,6 +247,126 @@ class App extends React.Component {
      * check social media endpoint integration
      * */
     checkSocialAccount = async (mobileNumber, countryName) => {
+        this.setState({loading: true});
+
+        const data = {
+            firstName: this.state.firstName.value,
+            lastName: this.state.lastName.value,
+            mobile: mobileNumber,
+            email: this.state.email.value,
+            socialMediaId: this.state.userId,
+            socialMediaToken: this.state.accessToken,
+            password: this.state.password.value,
+            authType: this.state.type,
+            gender: this.state.genderType.value,
+            country: countryName,
+            referralFrom: this.state.referralCode.value !== '' ? this.state.referralCode.value : null,
+        };
+
+        axios.post(SubUrl.check_social_details, data)
+            .then(async response => {
+
+                if (response.data.success) {
+
+                    await AsyncStorage.setItem(StorageStrings.USER_ROLE, 'public_user');
+
+                    // const {navigate} = this.props.navigation;
+                    // navigate('PinVerifyForm', {
+                    //     mobile: mobileNumber,
+                    //     firstName: this.state.firstName.value,
+                    //     lastName: this.state.lastName.value,
+                    //     email: this.state.email.value,
+                    //     userId: this.state.userId,
+                    //     socialMediaToken: this.state.accessToken,
+                    //     authType: this.state.type,
+                    //     userImage: this.state.image,
+                    //     password: this.state.password.value,
+                    //     gender: this.state.genderType.value,
+                    //     country: this.state.name,
+                    //     referralCode: this.state.referralCode.value
+
+                    // });
+                    // this.props.updateActiveRoute('WelcomeForm');
+
+                    /**
+                     * change after apple submission
+                     */
+                    const data = {
+                        firstName: this.state.firstName.value,
+                        lastName: this.state.lastName.value,
+                        mobile: mobileNumber,
+                        email: this.state.email.value,
+                        socialMediaId: this.state.userId,
+                        socialMediaToken: this.state.accessToken,
+                        authType: this.state.type,
+                        image: this.state.image,
+                        password: this.state.password.value,
+                        gender: this.state.genderType.value,
+                        country: countryName,
+                        referralFrom: this.state.referralCode.value !== '' ? this.state.referralCode.value : null,
+                    };
+
+                    axios.post(SubUrl.register_social_account, data)
+                        .then(async response => {
+                            if (response.data.success) {
+                                const {navigate} = this.props.navigation;
+                                await AsyncStorage.setItem(StorageStrings.LOGGED, 'true');
+                                await AsyncStorage.setItem(StorageStrings.ACCESS_TOKEN, response.data.body.access_token);
+                                await AsyncStorage.setItem(StorageStrings.REFRESH_TOKEN, response.data.body.refresh_token);
+                                await AsyncStorage.setItem(StorageStrings.USER_ID, response.data.body.user.userDetails.id.toString());
+                                await AsyncStorage.setItem(StorageStrings.MOBILE_NUMBER, encryption.encrypt(response.data.body.user.userDetails.mobile));
+                                await AsyncStorage.setItem(StorageStrings.EMAIL, encryption.encrypt(response.data.body.user.userDetails.email));
+                                await AsyncStorage.setItem(StorageStrings.FIRST_NAME, encryption.encrypt(response.data.body.user.userDetails.firstName));
+                                await AsyncStorage.setItem(StorageStrings.LAST_NAME, encryption.encrypt(response.data.body.user.userDetails.lastName));
+                                if (response.data.body.user.userDetails.gender !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.GENDER, encryption.encrypt(response.data.body.user.userDetails.gender));
+                                }
+                                if (response.data.body.user.userDetails.image !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.USER_IMAGE, encryption.encrypt(response.data.body.user.userDetails.image));
+                                }
+                                if (response.data.body.user.userDetails.dateOfBirth !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.BIRTHDAY, encryption.encrypt(response.data.body.user.userDetails.dateOfBirth));
+                                }
+                                if (response.data.body.user.userDetails.height !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.HEIGHT, encryption.encrypt(response.data.body.user.userDetails.height));
+                                }
+                                if (response.data.body.user.userDetails.weight !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.WEIGHT, encryption.encrypt(response.data.body.user.userDetails.weight));
+                                }
+                                if (response.data.body.user.userDetails.verificationNo !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.NIC, encryption.encrypt(response.data.body.user.userDetails.verificationNo));
+                                }
+                                if (response.data.body.user.userDetails.country !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.COUNTRY, encryption.encrypt(response.data.body.user.userDetails.country));
+                                }
+                                if (response.data.body.user.userDetails.referralCode !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.INVITE_CODE, encryption.encrypt(response.data.body.user.userDetails.referralCode));
+                                }
+                                if (response.data.body.user.userDetails.authType !== null) {
+                                    await AsyncStorage.setItem(StorageStrings.AUTH_TYPE, response.data.body.user.userDetails.authType);
+                                }
+                                this.checkGuestUserNavigation(navigate);
+                                this.setState({loading: false});
+                            } else {
+                                AppToast.serverErrorToast();
+                                this.setState({loading: false});
+                            }
+                        })
+                        .catch(error => {
+                            this.setState({loading: false});
+                            AppToast.networkErrorToast();
+                        });
+                    this.setState({loading: false});
+                } else {
+
+                }
+
+            })
+            .then(error => {
+                this.setState({loading: false});
+                // AppToast.networkErrorToast();
+            });
+
 
     };
 
