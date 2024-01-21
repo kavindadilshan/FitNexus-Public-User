@@ -41,7 +41,6 @@ import ReviewForm from './src/userPages/Home/Review/Review';
 import TrainersForm from './src/userPages/Home/Trainers/Trainers';
 import InstructorForm from './src/userPages/Home/Trainers/Instructor/InstructorForm';
 import BusinessProfileForm from './src/userPages/Home/Business/BusinessProfile';
-import WelcomeForm from './src/userPages/Auth/Conditions/Welcome';
 import CardAddedAlertForm from './src/component/Actions/CardAddedAlert';
 import CheckOutForm from './src/userPages/Home/CheckOut/CheckOut';
 import RateForm from './src/userPages/Home/Review/Rate';
@@ -81,7 +80,6 @@ import UpdateSubscriptionCard from "./src/userPages/Profile/MySubscriptions/Upda
 import {connect} from 'react-redux';
 
 import LeftIcon from './src/component/HeaderIcon/HeaderLeftIcon';
-import LeftIcon2 from './src/component/HeaderIcon/HeaderLeftForChat';
 import RightCloseIcon from './src/component/HeaderIcon/HeaderRightCloseIcon';
 import RightContIcon from './src/component/HeaderIcon/HeaderRightSessionsCount';
 import RightInfoIcon from './src/component/HeaderIcon/HeaderRightInfoIcon';
@@ -98,7 +96,6 @@ import profile from './src/assets/BottomTabs/IdleState/profile.png';
 import {Font} from './src/constance/AppFonts';
 import {StorageStrings} from './src/constance/StorageStrings';
 import SplashScreen from 'react-native-splash-screen';
-import ChatUI from './src/userPages/Chat/ChatUI/ChatUIContent';
 import {PUBLIC_URL, SubUrl} from './src/axios/server_url';
 import * as actionTypes from './src/store/actions';
 import Loading from './src/component/Loading/Loading';
@@ -358,13 +355,6 @@ export const ContactStack2 = createStackNavigator({
     },
     BottomNavigation: {
         screen: BottomNavigator2,
-        navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-        },
-    },
-    WelcomeForm: {
-        screen: WelcomeForm,
         navigationOptions: {
             header: null,
             gesturesEnabled: false,
@@ -762,18 +752,6 @@ export const ContactStack2 = createStackNavigator({
             headerLeft: <LeftIcon navigation={navigation}/>,
             headerTitle: 'Profile',
             headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
-        }),
-    },
-    ChatUI: {
-        screen: ChatUI,
-        // navigationOptions: {
-        //     header: null
-        // }
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon2 navigation={navigation} removeListner={navigation.getParam('removeListner')}/>,
-            headerTitle: navigation.getParam('userName', ''),
-            headerTitleStyle: {fontSize: 18, fontFamily: Font.SemiBold, width: '100%'},
         }),
     },
     BusinessMembershipsForm: {
