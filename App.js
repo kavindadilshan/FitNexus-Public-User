@@ -68,14 +68,7 @@ import HelpSubmitForm from './src/userPages/Profile/HelpSubmitForm';
 import InstructorTypesForm from './src/userPages/Home/Trainers/InstructorTypes';
 import ScheduleForm from './src/userPages/Home/Business/Schedule';
 import PrivacyPolicyForm from './src/userPages/Profile/PrivacyPolicy';
-import GroupClassExplore from "./src/userPages/Home/Classes/Explore/GroupClassExplore";
-import SubscriptionTrainers from "./src/userPages/Home/Trainers/Subscription/SubscriptionTrainers";
-import SubscriptionCheckout from "./src/userPages/Home/CheckOut/SubscriptionCheckout";
-import MySubscriptions from "./src/userPages/Profile/MySubscriptions/MySubscriptions";
-import SubscriptionDetails from "./src/userPages/Profile/MySubscriptions/SubscriptionDetails";
-import EligibleClasses from "./src/userPages/Profile/MySubscriptions/EligibleClasses";
 import MainUI from "./src/userPages/Home/Classes/MainUI";
-import UpdateSubscriptionCard from "./src/userPages/Profile/MySubscriptions/UpdateSubscriptionCard";
 
 import {connect} from 'react-redux';
 
@@ -378,16 +371,7 @@ export const ContactStack2 = createStackNavigator({
             header: null
         }),
     },
-    GroupClassExplore: {
-        screen: GroupClassExplore,
-        navigationOptions: ({navigation}) => ({
-            // headerStyle: styles.header,
-            // headerLeft: <LeftHomeBackIcon navigation={navigation} />,
-            // headerTitle: 'Online Group Class',
-            // headerTitleStyle: { fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75 },
-            header: null
-        }),
-    },
+
     SelectedDetails: {
         screen: SelectedDetailsForm,
         navigationOptions: ({navigation}) => ({
@@ -432,16 +416,6 @@ export const ContactStack2 = createStackNavigator({
         navigationOptions: ({navigation}) => ({
             headerStyle: styles.header,
             headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'CheckOut',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-
-    SubscriptionCheckout: {
-        screen: SubscriptionCheckout,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
             headerTitle: 'CheckOut',
             headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
         }),
@@ -533,41 +507,7 @@ export const ContactStack2 = createStackNavigator({
             headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
         }),
     },
-    MySubscriptions: {
-        screen: MySubscriptions,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    SubscriptionDetails: {
-        screen: SubscriptionDetails,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Subscription Details',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    UpdateSubscriptionCard: {
-        screen: UpdateSubscriptionCard,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Update Card',
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    EligibleClasses: {
-        screen: EligibleClasses,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: navigation.getParam('HeaderTitle', ''),
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
+
     OtpRequestForm: {
         screen: OtpRequestForm,
         navigationOptions: ({navigation}) => ({
@@ -623,16 +563,6 @@ export const ContactStack2 = createStackNavigator({
             headerTitle: 'Packages',
             headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
             headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-
-    SubscriptionTrainers: {
-        screen: SubscriptionTrainers,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitle: 'Trainers',
-            headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
         }),
     },
 
