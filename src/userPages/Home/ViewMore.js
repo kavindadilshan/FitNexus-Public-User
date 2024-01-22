@@ -74,6 +74,9 @@ class App extends React.Component {
             case 'Popular Fitness Trainers':
                 this.getPopularPhysicalTrainers();
                 break;
+            case 'Popular Fitness Classes':
+                this.getPopularPhysicalClass();
+                break;
 
             default:
                 break;
@@ -135,6 +138,52 @@ class App extends React.Component {
             })
     };
 
+    /**
+     * get popular physical class api
+     * @param page
+     */
+    getPopularPhysicalClass = async (page) => {
+        if (page === undefined) {
+            page = 0
+        }
+        axios.get(SubUrl.get_popular_physical_classes + '?page=' + page + '&size=10&country=' + this.state.country)
+            .then(async response => {
+                this.setState({loading: !this.state.loading});
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.last && data.empty) {
+                        this.setState({finished: true, loading: false});
+                    } else {
+                        const list = this.state.list;
+                        data.content.map((items) => {
+                            list.push({
+                                id: items.id,
+                                name: items.name,
+                                image: items.profileImage !== null ? items.profileImage : null,
+                                staringValue: items.rating,
+                                count: items.ratingCount,
+                                sessionPerWeek: items.averageSessionsPerWeek,
+                                price: items.startingFrom,
+                                calorie: items.calorieBurnOut,
+                                buttonStatus: items.buttonStatus,
+                                sessionsUpcoming: items.sessionsUpcoming,
+                                typeName: undefined
+                            })
+                        });
+                        if (data.last) {
+                            this.setState({finished: true, loading: false});
+                        }
+
+                        this.setState({list: list})
+                    }
+                }
+            })
+            .catch(error => {
+                this.setState({loading: false});
+                AppToast.networkErrorToast();
+            })
+    };
+
 
 
 
@@ -148,13 +197,20 @@ class App extends React.Component {
 
         const {navigate} = this.props.navigation;
         switch (type) {
-
+            case 'class':
+                navigate('ClassesDetailsForm', {
+                    classId: item.id,
+                    role: this.state.role !== 'Popular Fitness Classes' ? 'online' : 'offline',
+                    refresh: true
+                });
+                break;
             case 'trainer':
                 navigate('InstructorForm', {
                     trainerId: item.id,
                     refresh: true
                 });
                 break;
+
             default:
                 break;
         }
@@ -164,7 +220,24 @@ class App extends React.Component {
 
     render() {
 
+        const classList = this.state.list.map((item, i) => (
+            <SessionContainer
+                onPress={() => this.onButtonClick('class', item)}
+                image={item.image}
+                price={this.numberFormat(item.price)}
+                calorie={item.calorie + ' cal Burn Workout'}
+                name={item.name}
+                sessionPerWeek={item.sessionPerWeek}
+                staringValue={item.staringValue}
+                count={item.count}
+                buttonStatus={item.buttonStatus}
+                sessionsUpcoming={item.sessionsUpcoming}
+                typeName={item.typeName}
+                role={'offline'}
+                key={i}
+            />
 
+        ));
 
         const trainerList = this.state.list.map((item, i) => (
             <TrainerContainer
@@ -199,7 +272,12 @@ class App extends React.Component {
                                     case 'Popular Fitness Trainers':
                                         this.getPopularPhysicalTrainers(page);
                                         break;
-
+                                    case 'Popular Fitness Classes':
+                                        this.getPopularPhysicalClass(page);
+                                        break;
+                                    case 'Popular Gyms':
+                                        this.getPopularGyms(page);
+                                        break;
                                     default:
                                         break;
 
@@ -210,8 +288,10 @@ class App extends React.Component {
                 >
                     <View style={styles.mainContainer}>
                         <View style={styles.subContainer}>
-
-                                    trainerList
+                            {this.state.role === 'Popular Online Fitness Classes' || this.state.role === 'Popular Fitness Classes' ? classList :
+                                this.state.role === 'Popular Online Class Trainers' || this.state.role === 'Popular Fitness Trainers' || this.state.role === 'Popular Online Coaches' ?
+                                    trainerList : null
+                            }
                         </View>
                     </View>
                     {
