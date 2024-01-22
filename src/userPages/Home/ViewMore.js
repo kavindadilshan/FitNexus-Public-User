@@ -77,7 +77,9 @@ class App extends React.Component {
             case 'Popular Fitness Classes':
                 this.getPopularPhysicalClass();
                 break;
-
+            case 'Popular Gyms':
+                this.getPopularGyms();
+                break;
             default:
                 break;
 
@@ -184,7 +186,53 @@ class App extends React.Component {
             })
     };
 
+    /**
+     * get popular gyms api
+     * @param page
+     */
+    getPopularGyms = async (page) => {
+        if (page === undefined) {
+            page = 0
+        }
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+        axios.get(SubUrl.get_popular_gyms + '?page=' + page + '&size=10&latitude=' + latitude + '&longitude=' + longitude + '&country=' + this.state.country)
+            .then(async response => {
+                this.setState({loading: !this.state.loading});
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.last && data.empty) {
+                        this.setState({finished: true, loading: false});
+                    } else {
+                        const list = this.state.list;
+                        data.content.map((items) => {
+                            list.push({
+                                id: items.gymId,
+                                name: items.gymName,
+                                image: items.profileImage !== null ? items.profileImage : null,
+                                staringValue: items.rating,
+                                count: items.ratingCount,
+                                distance: items.distance,
+                                city: items.city,
+                                country: items.country
+                            })
+                        });
+                        if (data.last) {
+                            this.setState({finished: true, loading: false});
+                        }
 
+                        this.setState({list: list})
+                    }
+                } else {
+                    this.setState({loading: false});
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({loading: false});
+                AppToast.networkErrorToast();
+            });
+    };
 
 
     /**
@@ -210,7 +258,13 @@ class App extends React.Component {
                     refresh: true
                 });
                 break;
-
+            case 'gym':
+                navigate('GymProfileForm', {
+                    gymId: item.id,
+                    gymName: item.name,
+                    refresh: true
+                });
+                break;
             default:
                 break;
         }
@@ -251,7 +305,20 @@ class App extends React.Component {
             />
         ));
 
+        const gymsList = this.state.list.map((item, i) => (
+            <GymsComponent
+                onPress={() => this.onButtonClick('gym', item)}
+                image={item.image}
+                name={item.name}
+                city={item.city}
+                county={item.country}
+                distance={item.distance}
+                staringValue={item.staringValue}
+                count={item.count}
+                key={i}
+            />
 
+        ));
 
         return (
             <View style={styles.container}>
@@ -288,9 +355,9 @@ class App extends React.Component {
                 >
                     <View style={styles.mainContainer}>
                         <View style={styles.subContainer}>
-                            {this.state.role === 'Popular Online Fitness Classes' || this.state.role === 'Popular Fitness Classes' ? classList :
-                                this.state.role === 'Popular Online Class Trainers' || this.state.role === 'Popular Fitness Trainers' || this.state.role === 'Popular Online Coaches' ?
-                                    trainerList : null
+                            {this.state.role === this.state.role === 'Popular Fitness Classes' ? classList :
+                                this.state.role === 'Popular Fitness Trainers' ?
+                                    trainerList : gymsList
                             }
                         </View>
                     </View>
