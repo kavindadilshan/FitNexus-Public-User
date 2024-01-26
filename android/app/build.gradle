@@ -167,10 +167,10 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file(FITZKY_STORE_FILE)
-            storePassword FITZKY_STORE_PASSWORD
-            keyAlias FITZKY_KEY_ALIAS
-            keyPassword FITZKY_KEY_PASSWORD
+            storeFile file(FITNEXUS_STORE_FILE)
+            storePassword FITNEXUS_STORE_PASSWORD
+            keyAlias FITNEXUS_KEY_ALIAS
+            keyPassword FITNEXUS_KEY_PASSWORD
         }
     }
     buildTypes {
