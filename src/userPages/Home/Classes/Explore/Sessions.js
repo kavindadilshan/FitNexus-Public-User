@@ -108,7 +108,64 @@ class App extends React.Component {
 
 
     async componentWillMount() {
+        const {navigation} = this.props;
+        let selectedIndex = navigation.getParam('selectedIndex');
+        let checkIn = navigation.getParam('checkIn');
+        this.updateIndex = this.updateIndex.bind(this);
+        const now = new Date(new Date().setHours(0, 0, 0, 0));
+        let selectedCorporateId = navigation.getParam('selectedCorporateId');
+        this.setState({
+            selectedIndex: selectedIndex,
+            checkIn: checkIn,
+            min: now,
+            max: new Date(now.getTime() + 1000 * 60 * 60 * 24 - 1),
+            selectedCorporateId: selectedCorporateId
+        });
 
+        const category = navigation.getParam('category');
+
+        this.setState({
+            role: 'offline',
+            businessType: 'PHYSICAL',
+            loadLocation: !this.state.loadLocation,
+            promoCodeType: 'FITNESS_CLASS'
+        });
+        this.getLocationAddress();
+
+        this.willFocusSubscription = this.props.navigation.addListener('willFocus', async () => {
+
+            if (Platform.OS === 'ios') {
+                Orientation.lockToPortrait()
+            }
+
+            this.setState({
+                empty: false,
+                pageNumber: 0,
+                searchKey: {
+                    value: '',
+                    valid: true
+                },
+                list: [],
+                listBusiness: [],
+                finished: false,
+            });
+
+
+            if (this.state.selectedIndex !== 0) {
+                this.checkClassTypes('firstTime');
+            } else {
+                this.getAllBusiness();
+                this.getCategory();
+            }
+
+            if (selectedIndex !== 0 && checkIn) {
+                this.getCategory();
+            }
+
+
+            this.setState({loading: true});
+        });
+        this.setState({loading: !this.state.loading});
     };
 
     componentWillUnmount() {
@@ -117,7 +174,35 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * facebook analytics
+     * @param type
+     */
+    facebookAnalytics = (type) => {
+        if (type !== 'business') {
+            AppEventsLogger.logEvent("fb_mobile_search", {
+                'fb_content_type': type,
+                'fb_search_string': this.state.searchKey.value,
+                'fb_success': true
+            })
+        } else {
+            AppEventsLogger.logEvent("fb_mobile_search", {
+                'fb_content_type': 'Studio Profile',
+                'fb_search_string': this.state.searchKey.value,
+                'fb_success': true
+            })
+        }
 
+    }
+
+    /**
+     * google analytics
+     */
+    googleAnalytics = async () => {
+        await analytics().logSearch({
+            search_term: this.state.searchKey.value,
+        });
+    }
 
     /**
      * load online endpoints or offline endpoints
@@ -210,18 +295,29 @@ class App extends React.Component {
         }
     }
 
-
-    getAllBusiness = async () => {
+    /**
+     * search and get all business profiles endpoint
+     * @param page
+     * @param click
+     * @param searchKey
+     * @returns {Promise<void>}
+     */
+    getAllBusiness = async (page, click, searchKey) => {
 
 
     }
 
-
-    getAllOffineSessions = async () => {
+    /**
+     * search and get all sessions endpoint
+     * @param click
+     */
+    getAllOffineSessions = async (click) => {
 
     };
 
-
+    /**
+     * load 3 category
+     */
     getCategory = async () => {
 
     }
