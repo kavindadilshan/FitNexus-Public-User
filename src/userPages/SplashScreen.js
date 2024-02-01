@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Dimensions, Vibration, Platform, Linking, StatusBar} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {StorageStrings} from '../constance/StorageStrings';
-import image from '../assets/Auth/fitzkyWhiteLogo.png';
+import image from '../assets/Auth/CR_logo.png';
 import OneSignal from 'react-native-onesignal';
 import {Api} from '../constance/AppAPIKeys';
 import * as actionTypes from '../store/actions';
@@ -107,9 +107,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: Color.themeColor}}>
+            <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: Color.softLightGreen}}>
                 <StatusBar barStyle="dark-content" backgroundColor={Color.themeColor}/>
-                <View style={{width: 220, height: 220, margin: 24, backgroundColor: Color.themeColor}}>
+                <View style={{width: 360, height: 360, margin: 24, backgroundColor: Color.themeColor}}>
                     <Image source={image} style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
                 </View>
             </View>

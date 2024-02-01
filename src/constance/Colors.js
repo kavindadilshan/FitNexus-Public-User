@@ -71,7 +71,7 @@ export const Color = {
     green1: '#17D200',
 
     darkred: '#d12c2c',
-    softPink: '#FFCBCB',
+    softPink: '#D6FFDF',
     darkPink: '#FF5050',
     softLightRed:'#F46969',
     softRed: '#E84A4A',

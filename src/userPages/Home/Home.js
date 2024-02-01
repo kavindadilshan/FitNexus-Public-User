@@ -18,7 +18,7 @@ import GymImg from '../../assets/Home/Gym.png';
 import GroupClassImg from '../../assets/Home/Group_class.png';
 import Filter from '../../assets/Sample/Filter.png';
 import {StorageStrings} from "../../constance/StorageStrings";
-import logo from '../../assets/Auth/fitzkyLogo2.png';
+import logo from '../../assets/Auth/fitNexusLogo.png';
 import axios from '../../axios/axios';
 import {SubUrl} from "../../axios/server_url";
 import gif from '../../assets/Home/loading.gif';

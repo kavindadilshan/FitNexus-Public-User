@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import ImageSlider from './ImageSlider/ImageSlider';
 import { Color } from "../../../constance/Colors";
-import logo from "../../../assets/Auth/fitzkyLogo2.png";
+import logo from "../../../assets/Auth/fitNexusLogo.png";
 
 class App extends React.Component {
     state = {
@@ -61,7 +61,7 @@ class App extends React.Component {
                     marginTop: Platform.OS !== 'ios' ? '10%' : '15%',
                     justifyContent: 'center',
                 }}>
-                    <View style={{ width: '35%', height: '50%' }}>
+                    <View style={{ width: 180, height: 200 }}>
                         <Image source={logo} style={{ width: '100%', height: '100%' }} resizeMode={'contain'} />
                     </View>
                 </View>
