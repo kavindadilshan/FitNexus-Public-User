@@ -304,7 +304,73 @@ class App extends React.Component {
      */
     getAllBusiness = async (page, click, searchKey) => {
 
+        if (page === undefined) {
+            page = 0
+        }
 
+        let filterString = '';
+        let name = '';
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+        for (const selectedElm of this.state.selectedList) {
+            filterString += selectedElm + ',';
+        }
+        filterString = filterString.substring(0, filterString.length - 1);
+        name = searchKey !== '' ? this.state.searchKey.value : '';
+        this.setState({loading: true});
+        axios.get(SubUrl.get_all_business_profile + '?page=' + page + '&size=10' + '&name=' + name + '&classTypes=' + filterString + '&type=' + this.state.businessType + '&longitude=' + longitude + '&latitude=' + latitude)
+            .then(async response => {
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.empty && data.pageable.pageNumber === 0) {
+                        this.setState({empty: true})
+                    }
+                    if (data.last && data.empty) {
+                        this.setState({finished: true, loading: false});
+                    } else {
+                        let list = '';
+                        if (click !== 'click') {
+                            list = this.state.listBusiness;
+                        } else {
+                            list = [];
+                        }
+
+
+                        data.content.map((items) => {
+                            list.push({
+                                id: items.id,
+                                name: items.businessName,
+                                country: items.addresses.length === 0 ? null : items.addresses[0].country,
+                                mobile: items.telephone !== null ? items.telephone : null,
+                                image: items.profileImage !== null ? items.profileImage : null,
+                                rating: items.rating,
+                                ratingCount: items.ratingCount,
+                                description: items.description,
+                                city: items.headOffice.city,
+                                distance: items.distance,
+                                classTypes: items.classTypes,
+                                averageClassesPerWeek: items.averagePhysicalClassesPerWeek
+                            })
+                        });
+
+                        if (data.last) {
+                            this.setState({finished: true, loading: false});
+                        }
+
+                        this.setState({
+                            listBusiness: list,
+                            nameSelect: false,
+                        });
+                    }
+                } else {
+                    this.setState({loading: false, empty: true});
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({loading: !this.state.loading});
+                AppToast.networkErrorToast();
+            })
     }
 
     /**
@@ -312,14 +378,131 @@ class App extends React.Component {
      * @param click
      */
     getAllOffineSessions = async (click) => {
+        const gender = encryption.decrypt(await AsyncStorage.getItem(StorageStrings.GENDER));
+        const page = this.state.pageNumber;
+        const date = this.state.selectedDate;
+        const name = this.state.searchKey.value;
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+        const country = await AsyncStorage.getItem(StorageStrings.COUNTRY);
 
+        let filterString = '';
+        for (const selectedElm of this.state.selectedList) {
+            filterString += selectedElm + ',';
+        }
+        filterString = filterString.substring(0, filterString.length - 1);
+
+
+        const min = new Date(new Date(date).setHours(new Date(this.state.rangeLow).getHours(), new Date(this.state.rangeLow).getMinutes(), new Date(this.state.rangeLow).getSeconds()))
+        const max = new Date(new Date(date).setHours(new Date(this.state.rangeHigh).getHours(), new Date(this.state.rangeHigh).getMinutes(), new Date(this.state.rangeHigh).getSeconds()))
+
+        const startDateAndTime = new Date(min).toISOString().split('.')[0] + "Z";
+        const endDateAndTime = new Date(max).toISOString().split('.')[0] + "Z";
+
+        this.setState({loading: true});
+
+        axios.get(SubUrl.get_all_physical_sessions + '?page=' + page + '&size=5' + '&gender=' + gender + '&startDateTime=' + startDateAndTime + '&endDateTime=' + endDateAndTime + '&classTypes=' + filterString + '&name=' + name + '&category=' + 'GROUP' + '&longitude=' + longitude + '&latitude=' + latitude + '&country=' + country)
+            .then(async response => {
+                console.log(response.data)
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.empty && data.pageable.pageNumber === 0) {
+                        this.setState({empty: true})
+                    }
+                    if (data.last && data.empty) {
+                        this.setState({finished: true, loading: false});
+                    } else {
+                        let list;
+                        if (click !== 'click') {
+                            list = this.state.list;
+                        } else {
+                            list = [];
+                        }
+
+                        data.content.map((items) => {
+                            if (this.getButtonStatus(items.buttonStatus, items.sessionStatus, items.endDateAndTime).text !== 'Booking Closed') {
+                                list.push({
+                                    id: items.id,
+                                    name: items.className,
+                                    startTime: Moment(new Date(items.dateAndTime), 'hh:mm').format('LT'),
+                                    endTime: Moment(new Date(items.endDateAndTime), 'hh:mm').format('LT'),
+                                    endDateAndTime: items.endDateAndTime,
+                                    date: new Date(items.dateAndTime).toDateString(),
+                                    duration: items.duration,
+                                    classTypeName: items.classTypeName,
+                                    image: items.classProfileImage !== null ? items.classProfileImage : null,
+                                    rating: items.classRating,
+                                    ratingCount: items.ratingCount,
+                                    price: items.price,
+                                    location: items.location.city,
+                                    buttonStatus: items.buttonStatus,
+                                    sessionStatus: items.sessionStatus,
+                                    discountMaxAmount: items.discountMaxAmount,
+                                    discountPercentage: items.discountPercentage,
+                                    discountDescription: items.discountDescription,
+                                    membershipBooked: items.membershipBooked,
+                                    bookedMemberships: items.bookedMemberships,
+                                    allowCashPayment: items.allowCashPayment,
+                                    classId: items.classId,
+                                    promoCodeType: 'FITNESS_CLASS'
+                                });
+                            }
+
+
+                        });
+
+                        if (list.length === 0) {
+                            this.setState({empty: true})
+                        }
+
+                        if (data.last) {
+                            this.setState({finished: true, loading: false});
+                        }
+                        this.setState({
+                            list: list,
+                            nameSelect: false,
+                        });
+                    }
+                } else {
+                    this.setState({loading: false, empty: true});
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({loading: false});
+                AppToast.networkErrorToast();
+            });
     };
 
     /**
      * load 3 category
      */
     getCategory = async () => {
-
+        this.setState({loading2: true});
+        axios.get(SubUrl.get_all_class_types)
+            .then(async response => {
+                if (response.data.success) {
+                    const data = response.data.body;
+                    const list = [];
+                    for (let i = 0; i < 3; i++) {
+                        list.push({
+                            id: data[i].id,
+                            name: data[i].typeName,
+                        })
+                    }
+                    this.setState({
+                        listCategory: list,
+                        loading2: false
+                    })
+                } else {
+                    this.setState({loading2: false});
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({loading2: false});
+                AppToast.networkErrorToast();
+            })
     }
 
     /**
