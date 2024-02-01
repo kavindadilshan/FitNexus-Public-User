@@ -6,8 +6,8 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
         android:layout_margin="24dp"
         android:src="@mipmap/icon"/>
 

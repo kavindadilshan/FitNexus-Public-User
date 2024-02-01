@@ -95,5 +95,5 @@ export const Color = {
     brown:'#AD7F64',
     softLightBrown1:'#EFE5E0',
 
-    themeColor: '#C10016',
+    themeColor: '#30C451',
 };
