@@ -14,5 +14,10 @@ export const SubUrl={
     get_popular_physical_classes:'users/class/physical/popular',
     get_popular_gyms:'users/gym/popular',
     get_popular_physical_class_trainer:'users/coach/trainer/physical/popular',
+    get_all_business_profile:'users/business-profile',
+    get_all_physical_sessions:'users/class/physical/sessions',
+    get_gym_by_id:'users/gym/',
+
+
 
 };

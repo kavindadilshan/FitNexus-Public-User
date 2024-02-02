@@ -101,7 +101,25 @@ class App extends React.Component {
     };
 
     async componentDidMount() {
+        this.willFocusSubscription = this.props.navigation.addListener('willFocus', async () => {
+            const paramName = this.props.navigation.getParam('gymName');
+            this.props.navigation.setParams({
+                gymName: paramName,
+            });
 
+            if (this.props.navigation.getParam('refresh') || this.props.review) {
+                this.setState({
+                    list: [],
+                    listClasses: [],
+                    list2: [],
+                });
+                this.getAllInputState();
+                this.props.navigation.setParams({
+                    refresh: false,
+                });
+                this.props.reviewItem(false);
+            }
+        })
     }
 
     /**
@@ -171,6 +189,165 @@ class App extends React.Component {
         })
     }
 
+    /**
+     *gym profile by id endpoint
+     */
+    getAllInputState = async () => {
+        this.setState({loading: true});
+        const {navigation} = this.props;
+        const gymId = navigation.getParam('gymId');
+        const dateTime = new Date().toISOString().split('.')[0] + "Z";
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+        axios.get(SubUrl.get_gym_by_id + gymId + '?latitude=' + latitude + '&longitude=' + longitude)
+            .then(async response => {
+                if (!response.data.success) {
+                    this.setState({loading: false});
+                    Toast.show(response.data.message);
+                } else {
+                    const data = response.data.body;
+                    const name = data.gymName;
+                    const rating = data.rating;
+                    const description = data.description;
+                    const ratingCount = data.ratingCount;
+                    const image = data.profileImage !== null ? data.profileImage : null;
+                    const businessName = data.businessProfileName;
+                    const businessRating = data.businessProfileRating;
+                    const businessRatingCount = data.businessProfileRatingCount;
+                    const businessImage = data.businessProfileImage !== null ? data.businessProfileImage : null;
+                    const businessId = data.businessProfileId;
+                    const gymId = data.gymId;
+                    const weekDaysClosingHour = data.weekDaysClosingHour !== null ? this.timeConvert(data.weekDaysClosingHour) : null;
+                    const weekDaysOpeningHour = data.weekDaysOpeningHour !== null ? this.timeConvert(data.weekDaysOpeningHour) : null;
+                    const weekendClosingHour = data.weekendClosingHour !== null ? this.timeConvert(data.weekendClosingHour) : null;
+                    const weekendOpeningHour = data.weekendOpeningHour !== null ? this.timeConvert(data.weekendOpeningHour) : null;
+                    const distance = data.distance;
+                    const address = data.addressLine1 + ', ' + (data.addressLine2 !== '' ? data.addressLine2 + ',' : '') + data.city;
+                    const city = data.city;
+                    const placeLatitude = data.latitude;
+                    const placeLongitude = data.longitude;
+                    const memberships = data.memberships;
+                    const membershipBooked = data.membershipBooked;
+                    const membershipExpireDateTime = data.membershipExpireDateTime !== null ? data.membershipExpireDateTime : null;
+                    const membershipCount = data.membershipCount;
+                    const dayPassName = data.dayPass !== null ? data.dayPass.name : null;
+                    const dayPassPrice = data.dayPass !== null ? data.dayPass.price : null;
+                    const dayPassId = data.dayPass !== null ? data.dayPass.membershipId : null;
+                    const dayPassStatus = data.dayPassState;
+                    const dayPassAllowed = data.dayPassAllowed;
+                    const dayValid = data.dayPass !== null ? data.dayPass.dayPassDTO[this.findDay(new Date().getDay())] : false;
+                    const specialNoteVisible = data.closedOnSpecificDay;
+                    const specialNote = data.closedSpecificDay !== null ? data.closedSpecificDay : null;
+                    const dayPassDiscount = data.dayPass !== null ? data.dayPass.discount : null;
+                    const dayPassDiscountedPrice = data.dayPass !== null ? data.dayPass.discountedPrice : null;
+                    const saturdayOpeningHour = data.saturdayOpeningHour !== null ? this.timeConvert(data.saturdayOpeningHour) : null;
+                    const saturdayClosingHour = data.saturdayClosingHour !== null ? this.timeConvert(data.saturdayClosingHour) : null;
+                    const sundayOpeningHour = data.sundayOpeningHour !== null ? this.timeConvert(data.sundayOpeningHour) : null;
+                    const sundayClosingHour = data.sundayClosingHour !== null ? this.timeConvert(data.sundayClosingHour) : null;
+                    const youtubeUrl = data.youtubeUrl !== null && data.youtubeUrl !== '' ? Validation.YoutubeVideoIdValidator(data.youtubeUrl) : null;
+
+
+                    const list = [];
+                    for (let i = 0; i < data.gymImages.length; i++) {
+                        list.push({
+                            image: data.gymImages[i] !== null ? data.gymImages[i] : null,
+                        })
+                    }
+
+                    const equipmentList = [];
+
+                    for (let i = 0; i < data.equipmentList.length; i++) {
+                        equipmentList.push({
+                            name: data.equipmentList[i].name
+                        })
+                    }
+
+                    const facilitiestList = [];
+
+                    for (let i = 0; i < data.facilities.length; i++) {
+                        facilitiestList.push({
+                            name: data.facilities[i].name,
+                            image: data.facilities[i].image
+                        })
+                    }
+
+                    this.setState({
+                        name: name,
+                        rating: rating,
+                        description: description,
+                        ratingCount: ratingCount,
+                        list: list,
+                        image: image,
+                        businessName: businessName,
+                        businessRating: businessRating,
+                        businessRatingCount: businessRatingCount,
+                        businessImage: businessImage,
+                        businessId: businessId,
+                        gymId: gymId,
+                        loading: false,
+                        listEquipment: equipmentList,
+                        listFacility: facilitiestList,
+                        distance: distance.toFixed(1),
+                        address: address,
+                        weekDaysClosingHour: weekDaysClosingHour,
+                        weekDaysOpeningHour: weekDaysOpeningHour,
+                        weekendClosingHour: weekendClosingHour,
+                        weekendOpeningHour: weekendOpeningHour,
+                        placeLatitude: placeLatitude,
+                        placeLongitude: placeLongitude,
+                        listMembership: memberships,
+                        membershipBooked: membershipBooked,
+                        membershipExpireDateTime: membershipExpireDateTime,
+                        membershipCount: membershipCount,
+                        dayPassName: dayPassName,
+                        dayPassPrice: dayPassPrice,
+                        dayPassId: dayPassId,
+                        dayPassAllowed: dayPassAllowed,
+                        dayPassStatus: dayPassStatus,
+                        dayValid: dayValid,
+                        specialNote: specialNote,
+                        specialNoteVisible: specialNoteVisible,
+                        dayPassDiscount: dayPassDiscount,
+                        dayPassDiscountedPrice: dayPassDiscountedPrice,
+                        city: city,
+                        saturdayOpeningHour: saturdayOpeningHour,
+                        saturdayClosingHour: saturdayClosingHour,
+                        sundayOpeningHour: sundayOpeningHour,
+                        sundayClosingHour: sundayClosingHour,
+                        youtubeUrl: youtubeUrl
+                    })
+                    this.fbAnalyticsClass();
+                    this.googleAnalyticsGym();
+
+                }
+            })
+            .catch(error => {
+                this.setState({loading: false});
+                AppToast.networkErrorToast();
+            })
+    };
+
+    /**
+     * facebook analytics for gym profile
+     */
+    fbAnalyticsClass = () => {
+        AppEventsLogger.logEvent("fb_mobile_content_view", {
+            "fb_content": this.state.name,
+            "fb_content_type": 'Gym',
+            "fb_content_id": this.state.gymId,
+            "fb_currency": CurrencyType.currency
+        })
+    }
+
+    /**
+     * google analytics for gym profile
+     */
+    googleAnalyticsGym = async () => {
+        await analytics().logScreenView({
+            screen_class: 'Gym Profile',
+            screen_name: this.state.name,
+        });
+    }
 
     /**
      * view your location via open google map
