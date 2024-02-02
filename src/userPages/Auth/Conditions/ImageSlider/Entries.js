@@ -21,7 +21,7 @@ export const ENTRIES1 = [
     {
         title: 'One-stop App for all Your Fitness Needs',
         subtitle: 'You can find everything related to your fitness goals in one place full of varieties to choose from.',
-        illustration: IMG4
+        illustration: IMG2
     },
 
 ];
