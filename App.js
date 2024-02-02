@@ -68,7 +68,6 @@ import HelpSubmitForm from './src/userPages/Profile/HelpSubmitForm';
 import InstructorTypesForm from './src/userPages/Home/Trainers/InstructorTypes';
 import ScheduleForm from './src/userPages/Home/Business/Schedule';
 import PrivacyPolicyForm from './src/userPages/Profile/PrivacyPolicy';
-import MainUI from "./src/userPages/Home/Classes/MainUI";
 
 import {connect} from 'react-redux';
 
@@ -352,14 +351,6 @@ export const ContactStack2 = createStackNavigator({
             header: null,
             gesturesEnabled: false,
         },
-    },
-    MainUI: {
-        screen: MainUI,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftHomeBackIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold, width: screenWidth / 100 * 75},
-        }),
     },
     Sessions: {
         screen: SessionsForm,
@@ -734,7 +725,7 @@ export const ContactStack2 = createStackNavigator({
 
 }, {
     headerLayoutPreset: 'center',
-    // initialRouteName:'MainUI'
+
 });
 
 
