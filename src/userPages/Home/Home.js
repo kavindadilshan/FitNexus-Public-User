@@ -655,7 +655,7 @@ class App extends React.Component {
                             marginVertical: 10,
                             justifyContent: 'center'
                         }}>
-                            <View style={{width: '35%', height: '50%'}}>
+                            <View style={{width: 180, height: 70}}>
                                 <Image source={logo} style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
                             </View>
                         </View>
