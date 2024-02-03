@@ -67,6 +67,35 @@ class App extends React.Component {
     };
 
     async componentWillMount() {
+        this.updateIndex = this.updateIndex.bind(this);
+        this.willFocusSubscription = this.props.navigation.addListener('willFocus', async () => {
+            this.setState({
+                pageNumber: 0,
+                listDayPass: [],
+                listMembership: [],
+                searchKey: {
+                    value: '',
+                    valid: true
+                },
+                empty: false,
+                finished: false,
+            });
+
+
+
+            if (this.state.selectedIndex !== 0) {
+                this.getAllGymsforDayPass();
+            } else {
+                this.getAllGymsforMemberships();
+            }
+
+        });
+        this.setState({
+            loadLocation: !this.state.loadLocation,
+            latitude: this.props.latitude === 0 ? Number(await AsyncStorage.getItem(StorageStrings.LATITUDE)) : this.props.latitude,
+            longitude: this.props.latitude === 0 ? Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE)) : this.props.longitude,
+        })
+        this.getLocationAddress();
 
     }
 
@@ -81,7 +110,26 @@ class App extends React.Component {
      * @param selectedIndex
      */
     updateIndex(selectedIndex) {
+        if (selectedIndex !== this.state.selectedIndex) {
+            this.setState({
+                selectedIndex,
+                pageNumber: 0,
+                listDayPass: [],
+                listMembership: [],
+                searchKey: {
+                    value: '',
+                    valid: true
+                },
+                empty: false,
+                finished: false,
+            });
 
+            if (selectedIndex === 0) {
+                this.getAllGymsforMemberships(0, 'first', '')
+            } else {
+                this.getAllGymsforDayPass(0, 'first', '')
+            }
+        }
     }
 
     /**
@@ -95,10 +143,162 @@ class App extends React.Component {
             currency: CurrencyType.currency
         }).format(value).replace(/\.00/g, '');
 
+    /**
+     * preview location nearest city name
+     */
+    async getLocationAddress() {
+
+        const latitude = this.props.latitude === 0 ? Number(await AsyncStorage.getItem(StorageStrings.LATITUDE)) : this.props.latitude;
+        const longitude = this.props.latitude === 0 ? Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE)) : this.props.longitude;
+
+        Geocoder.from(latitude, longitude)
+            .then(json => {
+                console.log(json)
+                let locationName = (json.results[json.results.length - 4].formatted_address);
+                locationName = locationName.split(", ")[0];
+
+                this.setState({
+                    locationName: locationName,
+                    loadLocation: false
+                });
+            })
+            .catch(error => console.warn(error));
+    }
 
 
+    /**
+     * get all gym memberships endpoint
+     * @param page
+     * @param click
+     * @param searchName
+     * @returns {Promise<void>}
+     */
+    getAllGymsforMemberships = async (page, click, searchName) => {
 
+        if (page === undefined) {
+            page = 0
+        }
 
+        const name = searchName !== '' ? this.state.searchKey.value : '';
+        this.setState({ loading: true });
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+
+        axios.get(SubUrl.get_all_gyms_has_memberships + '?page=' + page + '&size=10' + '&name=' + name + '&longitude=' + longitude + '&latitude=' + latitude)
+            .then(async response => {
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.empty && data.pageable.pageNumber === 0) {
+                        this.setState({ empty: true })
+                    }
+                    if (data.last && data.empty) {
+                        this.setState({ finished: true, loading: false });
+                    } else {
+                        let list = '';
+                        if (click !== 'click') {
+                            list = this.state.listMembership;
+                        } else {
+                            list = [];
+                        }
+                        data.content.map((items) => {
+                            list.push({
+                                id: items.gymId,
+                                name: items.gymName,
+                                image: items.gymImage !== null ? items.gymImage : null,
+                                rating: items.gymRating,
+                                ratingCount: items.gymRatingCount,
+                                location: items.location.city,
+                                distance: items.distance.toFixed(1),
+                                price: items.price,
+                                discountedPrice: items.discountedPrice,
+                                discount: items.discount
+                            })
+                        })
+                        if (data.last) {
+                            this.setState({ finished: true, loading: false });
+                        }
+                        this.setState({
+                            listDayPass: list,
+                            nameSelect: false,
+                        });
+                    }
+                } else {
+                    this.setState({ loading: false, empty: true });
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({ loading: !this.state.loading });
+                AppToast.networkErrorToast();
+            })
+    };
+
+    /**
+     * get all day pass membership endpoint
+     * @param page
+     * @param click
+     * @param searchName
+     * @returns {Promise<void>}
+     */
+    getAllGymsforDayPass = async (page, click, searchName) => {
+
+        if (page === undefined) {
+            page = 0
+        }
+
+        const name = searchName !== '' ? this.state.searchKey.value : '';
+        this.setState({ loading: true });
+        const latitude = this.props.latitude !== 0 ? this.props.latitude : Number(await AsyncStorage.getItem(StorageStrings.LATITUDE));
+        const longitude = this.props.longitude !== 0 ? this.props.longitude : Number(await AsyncStorage.getItem(StorageStrings.LONGITUDE));
+
+        axios.get(SubUrl.get_all_gyms_has_dayPass + '?page=' + page + '&size=10' + '&name=' + name + '&longitude=' + longitude + '&latitude=' + latitude)
+            .then(async response => {
+                if (response.data.success) {
+                    const data = response.data.body;
+                    if (data.empty && data.pageable.pageNumber === 0) {
+                        this.setState({ empty: true })
+                    }
+                    if (data.last && data.empty) {
+                        this.setState({ finished: true, loading: false });
+                    } else {
+                        let list = '';
+                        if (click !== 'click') {
+                            list = this.state.listDayPass;
+                        } else {
+                            list = [];
+                        }
+                        data.content.map((items) => {
+                            list.push({
+                                id: items.gymId,
+                                name: items.gymName,
+                                image: items.gymImage !== null ? items.gymImage : null,
+                                rating: items.gymRating,
+                                ratingCount: items.gymRatingCount,
+                                location: items.location.city,
+                                distance: items.distance.toFixed(1),
+                                price: items.price,
+                                discountedPrice: items.discountedPrice,
+                                discount: items.discount
+                            })
+                        })
+                        if (data.last) {
+                            this.setState({ finished: true, loading: false });
+                        }
+                        this.setState({
+                            listMembership: list,
+                            nameSelect: false,
+                        });
+                    }
+                } else {
+                    this.setState({ loading: false, empty: true });
+                    AppToast.serverErrorToast();
+                }
+            })
+            .catch(error => {
+                this.setState({ loading: !this.state.loading });
+                AppToast.networkErrorToast();
+            })
+    };
 
     /**
      * state changer in text fields
@@ -130,6 +330,14 @@ class App extends React.Component {
             if (now - prev >= 1000) {
                 prev = now;
 
+                if (this.state.selectedIndex === 0) {
+                    this.facebookAnalytics('Gym Memberships')
+                    this.getAllGymsforMemberships();
+                } else {
+                    this.facebookAnalytics('Single Entry')
+                    this.getAllGymsforDayPass();
+                }
+                this.googleAnalytics();
             }
         }, 1000)
 
@@ -161,7 +369,12 @@ class App extends React.Component {
             longitude: this.props.longitude,
         });
 
-
+        this.getLocationAddress();
+        if (this.state.selectedIndex === 0) {
+            this.getAllGymsforMemberships();
+        } else {
+            this.getAllGymsforDayPass();
+        }
     };
 
     closeModal = async () => {
@@ -199,7 +412,18 @@ class App extends React.Component {
     onButtonClick = async (type, item) => {
         const { navigate } = this.props.navigation;
         switch (type) {
-
+            case 'search':
+                if (this.state.selectedIndex !== 0) {
+                    this.facebookAnalytics('Single Entry')
+                    this.setState({ nameSelect: true, listDayPass: [], empty: false, loading: !this.state.loading });
+                    this.getAllGymsforDayPass();
+                } else {
+                    this.facebookAnalytics('Gym Memberships')
+                    this.setState({ nameSelect: true, listMembership: [], empty: false, loading: !this.state.loading });
+                    this.getAllGymsforMemberships();
+                }
+                this.googleAnalytics()
+                break;
             case 'gym':
                 navigate('GymProfileForm', {
                     gymId: item.id,
@@ -356,6 +580,13 @@ class App extends React.Component {
                                     pageNumber: this.state.pageNumber + 1,
                                     loading: !this.state.loading,
                                 });
+                                if (this.state.selectedIndex === 0) {
+                                    const page = this.state.pageNumber + 1;
+                                    this.getAllGymsforMemberships(page);
+                                } else {
+                                    const page = this.state.pageNumber + 1;
+                                    this.getAllGymsforDayPass(page);
+                                }
                             }
                         }
                     }}
