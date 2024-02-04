@@ -625,7 +625,6 @@ DEPENDENCIES:
   - RNSslPinning (from `../node_modules/react-native-ssl-pinning/ios`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
-  - RNZoomUs (from `../node_modules/react-native-zoom-us`)
   - SDWebImage
   - tipsi-stripe (from `../node_modules/tipsi-stripe`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -787,8 +786,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
-  RNZoomUs:
-    :path: "../node_modules/react-native-zoom-us"
   tipsi-stripe:
     :path: "../node_modules/tipsi-stripe"
   Yoga:

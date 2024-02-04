@@ -29,9 +29,6 @@ def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs')
 
 allprojects {
     repositories {
-        flatDir {
-            dirs "$rootDir/../node_modules/react-native-zoom-us/android/libs"
-        }
         mavenLocal()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm

@@ -87,8 +87,6 @@ target 'FitzkyClient' do
 
   pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
 
-  pod 'RNZoomUs', :path => '../node_modules/react-native-zoom-us'
-
   pod 'RNAppleAuthentication', :path => '../node_modules/@invertase/react-native-apple-authentication'
 
   pod 'Firebase/Analytics'

@@ -238,7 +238,6 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation (project(':react-native-zoom-us'))
 
     implementation "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
 
