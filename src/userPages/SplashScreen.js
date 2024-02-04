@@ -109,7 +109,7 @@ class App extends React.Component {
         return (
             <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: Color.softLightGreen}}>
                 <StatusBar barStyle="dark-content" backgroundColor={Color.themeColor}/>
-                <View style={{width: 360, height: 360, margin: 24, backgroundColor: Color.themeColor}}>
+                <View style={{width: 360, height: 360, margin: 24}}>
                     <Image source={image} style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
                 </View>
             </View>
