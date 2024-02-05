@@ -181,13 +181,295 @@ class App extends React.Component {
         })
     }
 
+    /**
+     * use cratePaymentMethod logic strip
+     * @param id
+     * @param stripePaymentMethodId
+     * @param role
+     * @returns {Promise<void>}
+     */
+    async createPaymentMethod(id, stripePaymentMethodId, role) {
+        try {
+            const result = await stripe.confirmPaymentIntent({
+                clientSecret: id,
+                paymentMethodId: stripePaymentMethodId,
+
+            })
+            this.fbAnalytics();
+            this.googleAnalytics();
+            this.props.navigation.navigate('CardAddedForm', {
+                title: 'Your payment done',
+                page: 'GymProfileForm',
+                id: this.state.gymId,
+                role: 'gym'
+            })
+
+        } catch (e) {
+            this.setState({loading3: false});
+            AppToast.errorToast(e.message);
+            this.props.navigation.navigate('CardAddedFailForm', {
+                page: 'DayPassCheckOutForm'
+            })
+        }
+    }
+
+    /**
+     * stripe payment using saved card
+     * purchase membership endpoint
+     */
+    getClientSecret = async () => {
+        this.setState({loading3: true});
+
+        let data;
+
+        if (this.state.selectedDiscountId !== '') {
+            data = {
+                userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                membershipId: this.state.typeId,
+                paymentMethodId: this.state.stripePaymentMethodId !== null ? this.state.stripePaymentMethodId : this.state.payHerePaymentMethodId,
+                discountId: this.state.selectedDiscountId
+            };
+        } else {
+            data = {
+                userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                membershipId: this.state.typeId,
+                paymentMethodId: this.state.stripePaymentMethodId !== null ? this.state.stripePaymentMethodId : this.state.payHerePaymentMethodId,
+            };
+        }
+
+        if (this.state.stripePaymentMethodId === null) {
+            Object.assign(data, {
+                ipgType: 'PAYHERE',
+                deviceType: 'mobile'
+            })
+        }
+
+        axios.post(this.state.stripePaymentMethodId !== null ? SubUrl.purchase_membership : SubUrl.payhere_purchase_membership, data)
+            .then(async response => {
+
+                if (response.data.success) {
+
+                    const data = response.data.body;
+                    if (this.state.stripePaymentMethodId !== null) {
+                        let stripePaymentMethodId = this.state.stripePaymentMethodId;
+                        this.createPaymentMethod(data, stripePaymentMethodId);
+                    }else {
+                        // await this.payHereSavedCardPayments(data)
+                        this.setState({loading3: false});
+                        this.props.navigation.navigate('CardAddedForm', {
+                            title: 'Your payment done',
+                            page: 'GymProfileForm',
+                            id: this.state.gymId,
+                            role: 'gym'
+                        })
+                    }
+                } else {
+                    Toast.show(response.data.message);
+                    this.setState({loading: false, loading2: false, loading3: false});
+                    this.props.navigation.navigate('CardAddedFailForm', {
+                        page: 'DayPassCheckOutForm'
+                    })
+                }
+            })
+            .catch(error => {
+                this.setState({loading3: false})
+                AppToast.networkErrorToast();
+            })
+
+    };
+
+    /**
+     * saved card payment through payhere
+     * @param data
+     * @returns {Promise<void>}
+     */
+    payHereSavedCardPayments = async (data) => {
+        await PayHereApiService.payBySavedPayHereCard(data, 'Gym Day Pass')
+            .then(res => {
+                if (res.success) {
+                    this.setState({loading3: false});
+                    this.props.navigation.navigate('CardAddedForm', {
+                        title: 'Your payment done',
+                        page: 'GymProfileForm',
+                        id: this.state.gymId,
+                        role: 'gym'
+                    })
+                } else {
+                    this.setState({loading3: false});
+                    Toast.show(res.message);
+                    this.props.navigation.navigate('CardAddedFailForm', {
+                        page: 'DayPassCheckOutForm'
+                    })
+                }
+            })
+            .catch(err => {
+                this.setState({loading3: false});
+                AppToast.networkErrorToast();
+            })
+    }
+
+    /**
+     * stripe payment using new card
+     * purchase membership endpoint
+     * */
+    getClientSecret2 = async (type) => {
+        if (IS_STRIPE_ENABLED('gymMember')) {
+            try {
+                this.setState({loading: true, token: null, loading3: true});
+                const token = await stripe.paymentRequestWithCardForm(
+                    {
+                        theme: {
+                            primaryBackgroundColor: Color.white,
+                            secondaryBackgroundColor: Color.white,
+                            primaryForegroundColor: Color.black,
+                            secondaryForegroundColor: Color.black,
+                            accentColor: Color.softLightBlue2,
+                            errorColor: Color.red,
+                        },
+                    }
+                );
+
+                this.setState({token, save: true, loading: false, loading3: false});
+
+                try {
+
+                    let data;
+
+                    if (this.state.selectedDiscountId !== '') {
+                        data = {
+                            userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                            membershipId: this.state.typeId,
+                            discountId: this.state.selectedDiscountId
+                        };
+                    } else {
+                        data = {
+                            userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                            membershipId: this.state.typeId,
+                        };
+                    }
+
+                    axios.post(SubUrl.purchase_membership, data)
+                        .then(async response => {
+                            if (response.data.success) {
+                                const clientSecretId = response.data.body;
+
+                                const result = await stripe.confirmPaymentIntent({
+                                    clientSecret: clientSecretId,
+                                    paymentMethodId: token.id
+                                })
+
+                                this.fbAnalytics();
+                                this.googleAnalytics(token.id);
+
+                                this.props.navigation.navigate('CardAddedForm', {
+                                    title: 'Your payment done ',
+                                    page: 'GymProfileForm',
+                                    id: this.state.gymId,
+                                    role: 'gym',
+                                    newCard: true
+                                })
+
+                            } else {
+                                this.setState({loading: false, loading2: false, loading3: false});
+                                Toast.show(response.data.message);
+                                this.props.navigation.navigate('CardAddedFailForm', {
+                                    page: 'DayPassCheckOutForm'
+                                })
+                            }
+                        })
+                        .catch(error => {
+                            this.setState({loading3: false})
+                            AppToast.networkErrorToast();
+                        })
+
+                    this.setState({loading: false, loading3: false})
+                } catch (e) {
+                    this.setState({loading: false, loading3: false})
+                }
 
 
+            } catch (error) {
+                this.setState({loading: false, loading3: false})
+            }
+        }else {
+            await this.payHereNewCardPayment(type);
+        }
+    }
 
+    /**
+     * this method using for new card payment trough Payhere
+     * @returns {Promise<void>}
+     */
+    payHereNewCardPayment = async (status) => {
+        let data;
+        if (this.state.selectedDiscountId !== '') {
+            data = {
+                userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                membershipId: this.state.typeId,
+                discountId: this.state.selectedDiscountId,
+                ipgType: 'PAYHERE',
+                deviceType: 'mobile'
+            };
+        } else {
+            data = {
+                userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+                membershipId: this.state.typeId,
+                ipgType: 'PAYHERE',
+                deviceType: 'mobile'
+            };
+        }
+
+        axios.post(SubUrl.payhere_card_with_save_card_or_without_save_card_checkout + status, data)
+            .then(async response => {
+                if (response.data.success) {
+                    const obj = response.data.body;
+
+                    await PayHere.startPayment(
+                        await createPayHereObj(obj, 'Gym Day Pass',status),
+                        async (paymentId) => {
+                            console.log("Payment Completed", paymentId);
+                            this.fbAnalytics();
+                            this.googleAnalytics(obj.orderId);
+                            this.props.navigation.navigate('CardAddedForm', {
+                                title: 'Your payment done ',
+                                page: 'GymProfileForm',
+                                id: this.state.gymId,
+                                role: 'gym',
+                                newCard: false
+                            })
+                        },
+                        async (errorData) => {
+                            console.log("PayHere Error", errorData);
+                            this.setState({loading3: false});
+                            Toast.show("PayHere Error");
+                            this.props.navigation.navigate('CardAddedFailForm', {
+                                page: 'DayPassCheckOutForm'
+                            })
+
+                        },
+                        async () => {
+                            console.log("Payment Dismissed");
+                            this.setState({loading3: false});
+                        }
+                    );
+
+                } else {
+                    this.setState({loading3: false});
+                    Toast.show(response.data.message);
+                    this.props.navigation.navigate('CardAddedFailForm', {
+                        page: 'DayPassCheckOutForm'
+                    })
+                }
+            })
+            .catch(error => {
+                this.setState({loading3: false})
+                AppToast.networkErrorToast();
+            })
+    }
 
     handleCardPayPress = async (type) => {
         await this.setState({showAlertSaveCard:false})
-
+        await this.getClientSecret2(type);
     };
 
     /**
@@ -240,7 +522,7 @@ class App extends React.Component {
                 this.setState({stripePaymentMethodId: list[i].stripePaymentMethodId})
             }
         }
-
+        this.getClientSecret();
     };
 
     /**
