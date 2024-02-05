@@ -17,6 +17,7 @@ export const SubUrl={
     get_all_business_profile:'users/business-profile',
     get_all_physical_sessions:'users/class/physical/sessions',
     get_gym_by_id:'users/gym/',
+    check_stripe:'users/membership/check',
 
 
 

@@ -92,6 +92,7 @@ class App extends React.Component {
         });
 
 
+        this.getAllCards();
     }
 
     /**
@@ -105,6 +106,49 @@ class App extends React.Component {
             currency: CurrencyType.currency
         }).format(value).replace(/\.00/g, '');
 
+    /**
+     * load all card holders
+     * check stripe endpoint
+     * @returns {Promise<void>}
+     */
+    getAllCards = async () => {
+        this.setState({loading2: true});
+
+        const data = {
+            userId: await AsyncStorage.getItem(StorageStrings.USER_ID),
+        };
+
+        axios.post(SubUrl.check_stripe, data)
+            .then(async response => {
+                if (response.data.success) {
+                    const data = response.data.body.cards;
+                    const list = [];
+                    data.map((item) => {
+                        list.push({
+                            id: item.id,
+                            brand: item.brand,
+                            stripePaymentMethodId: item.stripePaymentMethodId,
+                            payHerePaymentMethodId: item.payHerePaymentMethodId,
+                            last4: item.last4.replace(/\D/g, ''),
+                            visible: false
+                        })
+                    })
+
+                    this.setState({
+                        list: list,
+                        loading2: false
+                    })
+                } else {
+                    this.setState({loading2: false});
+                    Toast.show(response.data.message)
+                }
+            })
+            .catch(error => {
+                this.setState({loading2: true});
+                AppToast.networkErrorToast();
+            })
+
+    };
 
 
 
