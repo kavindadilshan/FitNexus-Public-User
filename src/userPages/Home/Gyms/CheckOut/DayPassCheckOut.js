@@ -150,7 +150,36 @@ class App extends React.Component {
 
     };
 
+    /**
+     * facebook analytics using FBSDK
+     */
+    fbAnalytics = () => {
+        AppEventsLogger.logPurchase(this.state.price, CurrencyType.currency, {
+            'fb_content_id': this.state.typeId,
+            'fb_content': this.state.typeName,
+            'fb_content_type': 'Single Entry',
+            'fb_payment_info_available': 0,
+        })
+    }
 
+    /**
+     * google analytics for checkout ui
+     * @param id
+     * @returns {Promise<void>}
+     */
+    googleAnalytics = async (id) => {
+        await analytics().logEvent('purchase', {
+            transaction_id: id !== undefined ? id : this.state.stripePaymentMethodId,
+            currency: CurrencyType.currency,
+            items: [{
+                item_id: this.state.typeId,
+                item_name: this.state.typeName,
+                item_category: 'Single Entry',
+                quantity: 1,
+                price: this.state.price,
+            }]
+        })
+    }
 
 
 
