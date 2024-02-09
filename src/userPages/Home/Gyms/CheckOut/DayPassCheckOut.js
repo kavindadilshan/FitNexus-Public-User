@@ -599,32 +599,7 @@ class App extends React.Component {
                         </View>
                     ) : null}
 
-                    <View style={{marginBottom: 20}}>
 
-                        <View style={{
-                            flexDirection: 'row',
-                            marginTop: 5,
-                            marginBottom: 10,
-                            alignItems: 'center',
-                            flex: 1,
-                        }}>
-                            <Text style={{
-                                ...styles.mainTitle,
-                                fontSize: 16,
-                                marginLeft: 10,
-                            }}>Select a Promo Code</Text>
-
-                            {this.state.list2.length !== 0 ? (
-                                <TouchableOpacity style={styles.miniPromoCode}
-                                                  onPress={() => this.setState({modalVisible: true})}>
-                                    <Image source={AddImg2} style={{width: 15, height: 15}}/>
-                                    <Text style={styles.addPromoMiniTxt}>Add Promo code</Text>
-                                </TouchableOpacity>
-                            ) : null}
-                        </View>
-
-
-                    </View>
 
 
                     {this.state.list.length !== 0 ? (

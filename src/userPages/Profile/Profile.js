@@ -218,6 +218,24 @@ class App extends React.Component {
 
     }
 
+    // /**
+    //  * google analytics for checkout ui
+    //  * @param id
+    //  * @returns {Promise<void>}
+    //  */
+    // googleAnalytics = async(id) =>{
+    //     await analytics().logEvent('purchase', {
+    //         transaction_id: id!==undefined?id:this.state.stripePaymentMethodId,
+    //         currency: CurrencyType.currency,
+    //         items: [{
+    //             item_id: this.state.typeId,
+    //             item_name: this.state.typeName,
+    //             item_category: this.state.classType!=='online'?'physical class':'online class',
+    //             quantity: 1,
+    //             price: this.state.price,
+    //         }]
+    //     })
+    // }
 
     componentWillUnmount() {
         if (this.willFocusSubscription) {
@@ -231,7 +249,16 @@ class App extends React.Component {
      * @returns {Promise<void>}
      */
     getNotificationCounts = async (userId) => {
+        axios.get(SubUrl.get_notification_count_by_user + userId + '/notifications/count')
+            .then(async response => {
+                if (response.data.success) {
+                    this.props.changeNotificationHolder(response.data.body);
+                }
 
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
@@ -365,7 +392,21 @@ class App extends React.Component {
      * @returns {Promise<void>}
      */
     updateImageHandler = async () => {
-
+        const data = {
+            id: Number(await AsyncStorage.getItem(StorageStrings.USER_ID)),
+            imageBase64: this.state.profileImage.uri
+        };
+        axios.put(SubUrl.update_profile_image, data)
+            .then(async response => {
+                if (response.data.success) {
+                    await AsyncStorage.setItem(StorageStrings.USER_IMAGE, encryption.encrypt(this.state.profileImage.uri));
+                    this.setState({imageLoading: false});
+                }
+            })
+            .catch(error => {
+                AppToast.networkErrorToast();
+                this.setState({imageLoading: false});
+            })
     }
 
     /**
