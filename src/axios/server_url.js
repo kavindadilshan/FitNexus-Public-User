@@ -21,6 +21,8 @@ export const SubUrl={
     payhere_card_with_save_card_or_without_save_card_checkout:'/users/membership/payhere/checkout/',
     purchase_membership:'users/membership/purchase',
     payhere_purchase_membership:'users/membership/payhere/purchase',
+    get_business_profile_by_id:'users/business-profile/',
+    get_physical_classes_by_business_profile:'users/business-profile/',
 
 
     update_profile_image:'users/profile/image',
@@ -46,7 +48,6 @@ export const SubUrl={
     get_instructor_by_id:'users/coach/instructor/',
     get_all_trainer:'users/coach/trainer/popular',
     get_popular_online_personal_trainer:'users/coach/instructor/popular',
-    get_business_profile_by_id:'users/business-profile/',
     get_coach_details:'users/coach/',
     get_classes_by_trainer:'users/class/trainer/',
     get_popular_class:'users/class/popular',
@@ -89,7 +90,6 @@ export const SubUrl={
     save_rating_physical_class:'users/class/physical/rate',
     get_all_booked_upcoming_physical_session_of_the_user:'users/class/enroll/',
     get_all_book_physical_history_of_user:'users/class/enroll/',
-    get_physical_classes_by_business_profile:'users/business-profile/',
     get_gyms_by_business_profile:'users/gym/by-profile/',
     get_all_review_by_gyms:'users/gym/',
     get_gym_ratings:'users/gym/',
