@@ -112,7 +112,17 @@ class App extends PureComponent {
      * get notification count api
      */
     getNotificationCounts = async () => {
+        const userId = await AsyncStorage.getItem(StorageStrings.USER_ID);
+        axios.get(SubUrl.get_notification_count_by_user + userId + '/notifications/count')
+            .then(async response => {
+                if (response.data.success) {
+                    this.props.changeNotificationHolder(response.data.body);
+                }
 
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
 
     /**
