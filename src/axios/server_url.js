@@ -24,6 +24,8 @@ export const SubUrl={
     get_business_profile_by_id:'users/business-profile/',
     get_physical_classes_by_business_profile:'users/business-profile/',
     get_physical_class_schedule:'/users/business-profile/scheduled/',
+    get_notification_count_by_user:'users/profile/',
+    get_all_booked_upcoming_physical_session_of_the_user:'users/class/enroll/',
 
 
     update_profile_image:'users/profile/image',
@@ -70,7 +72,6 @@ export const SubUrl={
     get_all_book_history_of_user:'users/class/enroll/',
     get_all_notifications_of_user:'users/profile/',
     save_rating_for_classes_and_trainers:'users/class/rate-class-and-trainer',
-    get_notification_count_by_user:'users/profile/',
     get_business_profiles_by_class_type:'users/business-profile/by-class-type/',
     update_user_account:'users/profile',
     get_all_my_discounts:'users/profile/',
@@ -89,7 +90,6 @@ export const SubUrl={
     get_all_review_by_physical_class:'users/class/physical/',
     get_physical_class_rating:'users/class/physical/',
     save_rating_physical_class:'users/class/physical/rate',
-    get_all_booked_upcoming_physical_session_of_the_user:'users/class/enroll/',
     get_all_book_physical_history_of_user:'users/class/enroll/',
     get_gyms_by_business_profile:'users/gym/by-profile/',
     get_all_review_by_gyms:'users/gym/',
