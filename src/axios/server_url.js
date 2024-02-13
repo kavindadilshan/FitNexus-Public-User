@@ -23,6 +23,7 @@ export const SubUrl={
     payhere_purchase_membership:'users/membership/payhere/purchase',
     get_business_profile_by_id:'users/business-profile/',
     get_physical_classes_by_business_profile:'users/business-profile/',
+    get_physical_class_schedule:'/users/business-profile/scheduled/',
 
 
     update_profile_image:'users/profile/image',
@@ -144,7 +145,6 @@ export const SubUrl={
     get_active_purchased_corporative_memberships:'/users/membership/purchased/corporate/',
     get_inactive_purchased_corporative_membership:'/users/membership/purchased/corporate/history/',
     get_online_class_schedule:'/users/business-profile/scheduled/',
-    get_physical_class_schedule:'/users/business-profile/scheduled/',
     save_event_tracking:'/users/event/track',
     guest_user_auth:'public/users/guest-token',
     save_promo_code:'/users/profile/promo-code',
