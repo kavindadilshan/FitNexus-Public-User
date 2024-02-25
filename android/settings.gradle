@@ -1,4 +1,4 @@
-rootProject.name = 'FitzkyClient'
+rootProject.name = 'FitNexusClient'
 include ':@payhere_payhere-mobilesdk-reactnative'
 project(':@payhere_payhere-mobilesdk-reactnative').projectDir = new File(rootProject.projectDir, '../node_modules/@payhere/payhere-mobilesdk-reactnative/android')
 include ':react-native-orientation'

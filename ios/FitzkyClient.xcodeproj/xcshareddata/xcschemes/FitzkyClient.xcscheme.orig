@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Fitzky Public User.app"
-               BlueprintName = "FitzkyClient"
-               ReferencedContainer = "container:FitzkyClient.xcodeproj">
+               BlueprintName = "FitNexusClient"
+               ReferencedContainer = "container:FitNexusClient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,8 +46,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Fitzky Public User.app"
-            BlueprintName = "FitzkyClient"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BlueprintName = "FitNexusClient"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -56,9 +56,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "FitzkyClientTests.xctest"
-               BlueprintName = "FitzkyClientTests"
-               ReferencedContainer = "container:FitzkyClient.xcodeproj">
+               BuildableName = "FitNexusClientTests.xctest"
+               BlueprintName = "FitNexusClientTests"
+               ReferencedContainer = "container:FitNexusClient.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,8 +69,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Fitzky Public User.app"
-            BlueprintName = "FitzkyClient"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BlueprintName = "FitNexusClient"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -93,8 +93,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Fitzky Public User.app"
-            BlueprintName = "FitzkyClient"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BlueprintName = "FitNexusClient"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -110,8 +110,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Fitzky Public User.app"
-            BlueprintName = "FitzkyClient"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BlueprintName = "FitNexusClient"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

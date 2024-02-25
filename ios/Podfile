@@ -45,9 +45,9 @@ def flipper_post_install(installer)
   end
 end
 
-target 'FitzkyClient' do
+target 'FitNexusClient' do
 
-  # Pods for FitzkyClient
+  # Pods for FitNexusClient
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -105,7 +105,7 @@ target 'FitzkyClient' do
   pod 'payHereSDK', :git => 'https://github.com/PayHereDevs/payhere-mobilesdk-ios-rb.git', :modular_headers => true
   pod 'payhere-mobilesdk-reactnative', :path => '../node_modules/@payhere/payhere-mobilesdk-reactnative', :modular_headers => true
 
-  target 'FitzkyClientTests' do
+  target 'FitNexusClientTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -126,10 +126,10 @@ target 'FitzkyClient' do
   end
 end
 
-target 'FitzkyClient-tvOS' do
-  # Pods for FitzkyClient-tvOS
+target 'FitNexusClient-tvOS' do
+  # Pods for FitNexusClient-tvOS
 
-  target 'FitzkyClient-tvOSTests' do
+  target 'FitNexusClient-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

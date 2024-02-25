@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* FitzkyClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FitzkyClientTests.m */; };
+		00E356F31AD99517003FC87E /* FitNexusClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FitNexusClientTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		19EC1E01FC2DD301E61A1143 /* libPods-FitzkyClient-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 811D59F40653D37A7CA017DB /* libPods-FitzkyClient-tvOS.a */; };
+		19EC1E01FC2DD301E61A1143 /* libPods-FitNexusClient-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 811D59F40653D37A7CA017DB /* libPods-FitNexusClient-tvOS.a */; };
 		1EE800E6FFB645D0B7D6F33F /* Gilroy-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3705F5AB822241C0AA6D66F4 /* Gilroy-BoldItalic.otf */; };
 		2386799F050B4FB2AC1484F5 /* Gilroy-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5171B987297244A79833A430 /* Gilroy-Bold.otf */; };
 		23CC893CD4B74002B6CCDA15 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B530042459F34202BC240980 /* Gilroy-ExtraBold.otf */; };
 		2AF5813B25B4903600FF21E0 /* Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5813A25B4903600FF21E0 /* Void.swift */; };
-		2C1E047EB9C308BA00F1814E /* libPods-FitzkyClient-FitzkyClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9DC17521070F1905373908 /* libPods-FitzkyClient-FitzkyClientTests.a */; };
+		2C1E047EB9C308BA00F1814E /* libPods-FitNexusClient-FitNexusClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9DC17521070F1905373908 /* libPods-FitNexusClient-FitNexusClientTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* FitzkyClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FitzkyClientTests.m */; };
-		39F3F8CF198ACD8B7B457C64 /* libPods-FitzkyClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F6203E2EBA21A24C58BCA6 /* libPods-FitzkyClient.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* FitNexusClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FitNexusClientTests.m */; };
+		39F3F8CF198ACD8B7B457C64 /* libPods-FitNexusClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F6203E2EBA21A24C58BCA6 /* libPods-FitNexusClient.a */; };
 		523ADD542485F3DA00593E0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 523ADD532485F3DA00593E0D /* GoogleService-Info.plist */; };
 		5D33A88EEAF0450D97E76A85 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BBCD624AEA3C4EEFA702E07A /* Gilroy-Regular.otf */; };
 		8AF2AA5AC10D4547B7C684B3 /* Gilroy-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 88B9E0F305B94A2A9A3D9EB1 /* Gilroy-Medium.otf */; };
 		A57216362A2D0A96C6BBF149 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C700C57F95141853FB7810E /* libPods-OneSignalNotificationServiceExtension.a */; };
 		C7662B0470D54FAFB6097D06 /* Gilroy-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17C3C73FE64E483B9C4EB674 /* Gilroy-SemiBold.otf */; };
-		D8D52003E4714580DB9F8A5A /* libPods-FitzkyClient-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE19997CD93BEDB9BBD4BA38 /* libPods-FitzkyClient-tvOSTests.a */; };
+		D8D52003E4714580DB9F8A5A /* libPods-FitNexusClient-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE19997CD93BEDB9BBD4BA38 /* libPods-FitNexusClient-tvOSTests.a */; };
 		ED0A8A1F248124B3007897A2 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0A8A1E248124B3007897A2 /* libRNGoogleSignin.a */; };
 		EDA934DF24D3FA2F00627A6C /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA934DE24D3FA2F00627A6C /* NotificationService.m */; };
 		EDA934E324D3FA2F00627A6C /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EDA934DB24D3FA2F00627A6C /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -40,14 +40,14 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = FitzkyClient;
+			remoteInfo = FitNexusClient;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "FitzkyClient-tvOS";
+			remoteInfo = "FitNexusClient-tvOS";
 		};
 		EDA934E124D3FA2F00627A6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -74,50 +74,50 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* FitzkyClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitzkyClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* FitNexusClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNexusClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* FitzkyClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FitzkyClientTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* FitNexusClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FitNexusClientTests.m; sourceTree = "<group>"; };
 		0A079372391F4C148CCEDE21 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		0B12BC896D6F477D88ED521E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		12723CA666A94C31A119172D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Fitzky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitzky.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FitzkyClient/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = FitzkyClient/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FitNexusClient/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = FitNexusClient/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FitzkyClient/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FitzkyClient/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FitzkyClient/main.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FitNexusClient/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FitNexusClient/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FitNexusClient/main.m; sourceTree = "<group>"; };
 		17C3C73FE64E483B9C4EB674 /* Gilroy-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-SemiBold.otf"; path = "../assets/fonts/Gilroy-SemiBold.otf"; sourceTree = "<group>"; };
 		264AF01082C94356BDF9A7F2 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		2AF5813925B4903600FF21E0 /* FitzkyClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitzkyClient-Bridging-Header.h"; sourceTree = "<group>"; };
+		2AF5813925B4903600FF21E0 /* FitNexusClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitNexusClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		2AF5813A25B4903600FF21E0 /* Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Void.swift; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* FitzkyClient-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FitzkyClient-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* FitzkyClient-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FitzkyClient-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* FitNexusClient-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FitNexusClient-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* FitNexusClient-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FitNexusClient-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34085C72A8A12944B94E925C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		3705F5AB822241C0AA6D66F4 /* Gilroy-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-BoldItalic.otf"; path = "../assets/fonts/Gilroy-BoldItalic.otf"; sourceTree = "<group>"; };
 		44331FEC2DD84229BD34EE3B /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		5171B987297244A79833A430 /* Gilroy-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-Bold.otf"; path = "../assets/fonts/Gilroy-Bold.otf"; sourceTree = "<group>"; };
 		523ADD532485F3DA00593E0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5450DC1C5B772919302FDD32 /* Pods-FitzkyClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient.debug.xcconfig"; path = "Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient.debug.xcconfig"; sourceTree = "<group>"; };
+		5450DC1C5B772919302FDD32 /* Pods-FitNexusClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient.debug.xcconfig"; path = "Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient.debug.xcconfig"; sourceTree = "<group>"; };
 		5BAFCA310EF44115B7B99020 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		5C9DC17521070F1905373908 /* libPods-FitzkyClient-FitzkyClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitzkyClient-FitzkyClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C9DC17521070F1905373908 /* libPods-FitNexusClient-FitNexusClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitNexusClient-FitNexusClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		602EC0F351D9A824185F090B /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		6EF36D18021129899D8BFED1 /* Pods-FitzkyClient-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-tvOSTests/Pods-FitzkyClient-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6EF36D18021129899D8BFED1 /* Pods-FitNexusClient-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-tvOSTests/Pods-FitNexusClient-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7C700C57F95141853FB7810E /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81198D730B274F3A9CC108E1 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		811D59F40653D37A7CA017DB /* libPods-FitzkyClient-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitzkyClient-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		811D59F40653D37A7CA017DB /* libPods-FitNexusClient-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitNexusClient-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B9E0F305B94A2A9A3D9EB1 /* Gilroy-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-Medium.otf"; path = "../assets/fonts/Gilroy-Medium.otf"; sourceTree = "<group>"; };
-		8FEE67431ADDDC49082B4C7D /* Pods-FitzkyClient-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-tvOS/Pods-FitzkyClient-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		91F6203E2EBA21A24C58BCA6 /* libPods-FitzkyClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitzkyClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9234B36F880FA6836C6994B1 /* Pods-FitzkyClient-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-tvOSTests/Pods-FitzkyClient-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		8FEE67431ADDDC49082B4C7D /* Pods-FitNexusClient-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-tvOS/Pods-FitNexusClient-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		91F6203E2EBA21A24C58BCA6 /* libPods-FitNexusClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitNexusClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9234B36F880FA6836C6994B1 /* Pods-FitNexusClient-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-tvOSTests/Pods-FitNexusClient-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B020B87F648A41F3A34AE602 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		B4D80BD885394A1E958FEA79 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B530042459F34202BC240980 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-ExtraBold.otf"; path = "../assets/fonts/Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		BAAA86043E724D3D8399677C /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		BBCD624AEA3C4EEFA702E07A /* Gilroy-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-Regular.otf"; path = "../assets/fonts/Gilroy-Regular.otf"; sourceTree = "<group>"; };
-		BE19997CD93BEDB9BBD4BA38 /* libPods-FitzkyClient-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitzkyClient-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE19997CD93BEDB9BBD4BA38 /* libPods-FitNexusClient-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FitNexusClient-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B6DF756E1D44D4A03B4E04 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		CF0446CBE520B260A2C08273 /* Pods-FitzkyClient-FitzkyClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-FitzkyClientTests.release.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF0446CBE520B260A2C08273 /* Pods-FitNexusClient-FitNexusClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-FitNexusClientTests.release.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		E3D2F20FF94947FB8A31B070 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		E89C49C59E05403396C9AAF5 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		EC7AD7D73D134DB6A08B9348 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -131,15 +131,15 @@
 		ED97471024D048B600ABCE31 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		ED97471124D048B600ABCE31 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		ED97471324D048B600ABCE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDA21929247E5C63005964BE /* Fitzky Public User.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Fitzky Public User.entitlements"; path = "FitzkyClient/Fitzky Public User.entitlements"; sourceTree = "<group>"; };
+		EDA21929247E5C63005964BE /* Fitzky Public User.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Fitzky Public User.entitlements"; path = "FitNexusClient/Fitzky Public User.entitlements"; sourceTree = "<group>"; };
 		EDA934DB24D3FA2F00627A6C /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA934DD24D3FA2F00627A6C /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		EDA934DE24D3FA2F00627A6C /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		EDA934E024D3FA2F00627A6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFB28FD047B414ECE3712419 /* Pods-FitzkyClient-FitzkyClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-FitzkyClientTests.debug.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EFB28FD047B414ECE3712419 /* Pods-FitNexusClient-FitNexusClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-FitNexusClientTests.debug.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F273405412E84314B0CDDAE2 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		F71314437583116F847D229F /* Pods-FitzkyClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient.release.xcconfig"; path = "Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient.release.xcconfig"; sourceTree = "<group>"; };
-		FA40CDDE58ED991F9B72D97A /* Pods-FitzkyClient-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitzkyClient-tvOS.release.xcconfig"; path = "Target Support Files/Pods-FitzkyClient-tvOS/Pods-FitzkyClient-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		F71314437583116F847D229F /* Pods-FitNexusClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient.release.xcconfig"; path = "Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient.release.xcconfig"; sourceTree = "<group>"; };
+		FA40CDDE58ED991F9B72D97A /* Pods-FitNexusClient-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitNexusClient-tvOS.release.xcconfig"; path = "Target Support Files/Pods-FitNexusClient-tvOS/Pods-FitNexusClient-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		FE79083DE97041178A93B008 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1E047EB9C308BA00F1814E /* libPods-FitzkyClient-FitzkyClientTests.a in Frameworks */,
+				2C1E047EB9C308BA00F1814E /* libPods-FitNexusClient-FitNexusClientTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0A8A1F248124B3007897A2 /* libRNGoogleSignin.a in Frameworks */,
-				39F3F8CF198ACD8B7B457C64 /* libPods-FitzkyClient.a in Frameworks */,
+				39F3F8CF198ACD8B7B457C64 /* libPods-FitNexusClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19EC1E01FC2DD301E61A1143 /* libPods-FitzkyClient-tvOS.a in Frameworks */,
+				19EC1E01FC2DD301E61A1143 /* libPods-FitNexusClient-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D52003E4714580DB9F8A5A /* libPods-FitzkyClient-tvOSTests.a in Frameworks */,
+				D8D52003E4714580DB9F8A5A /* libPods-FitNexusClient-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,13 +188,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* FitzkyClientTests */ = {
+		00E356EF1AD99517003FC87E /* FitNexusClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* FitzkyClientTests.m */,
+				00E356F21AD99517003FC87E /* FitNexusClientTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = FitzkyClientTests;
+			path = FitNexusClientTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -205,7 +205,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* FitzkyClient */ = {
+		13B07FAE1A68108700A75B9A /* FitNexusClient */ = {
 			isa = PBXGroup;
 			children = (
 				EDA21929247E5C63005964BE /* Fitzky Public User.entitlements */,
@@ -217,7 +217,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = FitzkyClient;
+			name = FitNexusClient;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -228,10 +228,10 @@
 				ED2F3B3D247D293900930AA6 /* MobileRTCScreenShare.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				91F6203E2EBA21A24C58BCA6 /* libPods-FitzkyClient.a */,
-				5C9DC17521070F1905373908 /* libPods-FitzkyClient-FitzkyClientTests.a */,
-				811D59F40653D37A7CA017DB /* libPods-FitzkyClient-tvOS.a */,
-				BE19997CD93BEDB9BBD4BA38 /* libPods-FitzkyClient-tvOSTests.a */,
+				91F6203E2EBA21A24C58BCA6 /* libPods-FitNexusClient.a */,
+				5C9DC17521070F1905373908 /* libPods-FitNexusClient-FitNexusClientTests.a */,
+				811D59F40653D37A7CA017DB /* libPods-FitNexusClient-tvOS.a */,
+				BE19997CD93BEDB9BBD4BA38 /* libPods-FitNexusClient-tvOSTests.a */,
 				7C700C57F95141853FB7810E /* libPods-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
@@ -279,16 +279,16 @@
 				2AF5813A25B4903600FF21E0 /* Void.swift */,
 				523ADD532485F3DA00593E0D /* GoogleService-Info.plist */,
 				ED2F3B41247D295400930AA6 /* MobileRTCResources.bundle */,
-				13B07FAE1A68108700A75B9A /* FitzkyClient */,
+				13B07FAE1A68108700A75B9A /* FitNexusClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* FitzkyClientTests */,
+				00E356EF1AD99517003FC87E /* FitNexusClientTests */,
 				ED97470F24D048B600ABCE31 /* OneSignalNotificationServiceExtension */,
 				EDA934DC24D3FA2F00627A6C /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D4ED88E8CDDCE081DB3123DE /* Pods */,
 				5797A9B7663B4029A22A4336 /* Resources */,
-				2AF5813925B4903600FF21E0 /* FitzkyClient-Bridging-Header.h */,
+				2AF5813925B4903600FF21E0 /* FitNexusClient-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -299,9 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Fitzky.app */,
-				00E356EE1AD99517003FC87E /* FitzkyClientTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* FitzkyClient-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* FitzkyClient-tvOSTests.xctest */,
+				00E356EE1AD99517003FC87E /* FitNexusClientTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* FitNexusClient-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* FitNexusClient-tvOSTests.xctest */,
 				EDA934DB24D3FA2F00627A6C /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
@@ -310,14 +310,14 @@
 		D4ED88E8CDDCE081DB3123DE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5450DC1C5B772919302FDD32 /* Pods-FitzkyClient.debug.xcconfig */,
-				F71314437583116F847D229F /* Pods-FitzkyClient.release.xcconfig */,
-				EFB28FD047B414ECE3712419 /* Pods-FitzkyClient-FitzkyClientTests.debug.xcconfig */,
-				CF0446CBE520B260A2C08273 /* Pods-FitzkyClient-FitzkyClientTests.release.xcconfig */,
-				8FEE67431ADDDC49082B4C7D /* Pods-FitzkyClient-tvOS.debug.xcconfig */,
-				FA40CDDE58ED991F9B72D97A /* Pods-FitzkyClient-tvOS.release.xcconfig */,
-				6EF36D18021129899D8BFED1 /* Pods-FitzkyClient-tvOSTests.debug.xcconfig */,
-				9234B36F880FA6836C6994B1 /* Pods-FitzkyClient-tvOSTests.release.xcconfig */,
+				5450DC1C5B772919302FDD32 /* Pods-FitNexusClient.debug.xcconfig */,
+				F71314437583116F847D229F /* Pods-FitNexusClient.release.xcconfig */,
+				EFB28FD047B414ECE3712419 /* Pods-FitNexusClient-FitNexusClientTests.debug.xcconfig */,
+				CF0446CBE520B260A2C08273 /* Pods-FitNexusClient-FitNexusClientTests.release.xcconfig */,
+				8FEE67431ADDDC49082B4C7D /* Pods-FitNexusClient-tvOS.debug.xcconfig */,
+				FA40CDDE58ED991F9B72D97A /* Pods-FitNexusClient-tvOS.release.xcconfig */,
+				6EF36D18021129899D8BFED1 /* Pods-FitNexusClient-tvOSTests.debug.xcconfig */,
+				9234B36F880FA6836C6994B1 /* Pods-FitNexusClient-tvOSTests.release.xcconfig */,
 				34085C72A8A12944B94E925C /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
 				602EC0F351D9A824185F090B /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
@@ -348,9 +348,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* FitzkyClientTests */ = {
+		00E356ED1AD99517003FC87E /* FitNexusClientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FitzkyClientTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FitNexusClientTests" */;
 			buildPhases = (
 				3E01BFC4AE5546755DEC1273 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -364,14 +364,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = FitzkyClientTests;
-			productName = FitzkyClientTests;
-			productReference = 00E356EE1AD99517003FC87E /* FitzkyClientTests.xctest */;
+			name = FitNexusClientTests;
+			productName = FitNexusClientTests;
+			productReference = 00E356EE1AD99517003FC87E /* FitNexusClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* FitzkyClient */ = {
+		13B07F861A680F5B00A75B9A /* FitNexusClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FitzkyClient" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FitNexusClient" */;
 			buildPhases = (
 				930BF6DBE5FC25B778842CF5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -388,14 +388,14 @@
 			dependencies = (
 				EDA934E224D3FA2F00627A6C /* PBXTargetDependency */,
 			);
-			name = FitzkyClient;
-			productName = FitzkyClient;
+			name = FitNexusClient;
+			productName = FitNexusClient;
 			productReference = 13B07F961A680F5B00A75B9A /* Fitzky.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* FitzkyClient-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* FitNexusClient-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitzkyClient-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitNexusClient-tvOS" */;
 			buildPhases = (
 				E1B86162515EE3C4EF647044 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -408,14 +408,14 @@
 			);
 			dependencies = (
 			);
-			name = "FitzkyClient-tvOS";
-			productName = "FitzkyClient-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* FitzkyClient-tvOS.app */;
+			name = "FitNexusClient-tvOS";
+			productName = "FitNexusClient-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* FitNexusClient-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* FitzkyClient-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* FitNexusClient-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitzkyClient-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitNexusClient-tvOSTests" */;
 			buildPhases = (
 				934F511953732CE3A04CF978 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -427,9 +427,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "FitzkyClient-tvOSTests";
-			productName = "FitzkyClient-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* FitzkyClient-tvOSTests.xctest */;
+			name = "FitNexusClient-tvOSTests";
+			productName = "FitNexusClient-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* FitNexusClient-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EDA934DA24D3FA2F00627A6C /* OneSignalNotificationServiceExtension */ = {
@@ -483,7 +483,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FitzkyClient" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FitNexusClient" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -496,10 +496,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* FitzkyClient */,
-				00E356ED1AD99517003FC87E /* FitzkyClientTests */,
-				2D02E47A1E0B4A5D006451C7 /* FitzkyClient-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* FitzkyClient-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* FitNexusClient */,
+				00E356ED1AD99517003FC87E /* FitNexusClientTests */,
+				2D02E47A1E0B4A5D006451C7 /* FitNexusClient-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* FitNexusClient-tvOSTests */,
 				EDA934DA24D3FA2F00627A6C /* OneSignalNotificationServiceExtension */,
 			);
 		};
@@ -560,7 +560,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignalCore/OneSignalCore.framework/OneSignalCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignalExtension/OneSignalExtension.framework/OneSignalExtension",
@@ -579,7 +579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
@@ -647,7 +647,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FitzkyClient-FitzkyClientTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FitNexusClient-FitNexusClientTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -660,7 +660,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignalCore/OneSignalCore.framework/OneSignalCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignalExtension/OneSignalExtension.framework/OneSignalExtension",
@@ -679,7 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		930BF6DBE5FC25B778842CF5 /* [CP] Check Pods Manifest.lock */ = {
@@ -697,7 +697,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FitzkyClient-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FitNexusClient-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -719,7 +719,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FitzkyClient-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FitNexusClient-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -732,7 +732,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -787,7 +787,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient-FitzkyClientTests/Pods-FitzkyClient-FitzkyClientTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient-FitNexusClientTests/Pods-FitNexusClient-FitNexusClientTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7239D63426129E9E2FC6CFA /* [CP] Copy Pods Resources */ = {
@@ -796,7 +796,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -851,7 +851,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitzkyClient/Pods-FitzkyClient-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FitNexusClient/Pods-FitNexusClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E1B86162515EE3C4EF647044 /* [CP] Check Pods Manifest.lock */ = {
@@ -869,7 +869,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FitzkyClient-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FitNexusClient-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -921,7 +921,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* FitzkyClientTests.m in Sources */,
+				00E356F31AD99517003FC87E /* FitNexusClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,7 +948,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* FitzkyClientTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* FitNexusClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,12 +965,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* FitzkyClient */;
+			target = 13B07F861A680F5B00A75B9A /* FitNexusClient */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* FitzkyClient-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* FitNexusClient-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 		EDA934E224D3FA2F00627A6C /* PBXTargetDependency */ = {
@@ -987,7 +987,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = FitzkyClient;
+			path = FitNexusClient;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -995,7 +995,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFB28FD047B414ECE3712419 /* Pods-FitzkyClient-FitzkyClientTests.debug.xcconfig */;
+			baseConfigurationReference = EFB28FD047B414ECE3712419 /* Pods-FitNexusClient-FitNexusClientTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1003,7 +1003,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FitzkyClientTests/Info.plist;
+				INFOPLIST_FILE = FitNexusClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1013,18 +1013,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitzkyClient.app/FitzkyClient";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNexusClient.app/FitNexusClient";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF0446CBE520B260A2C08273 /* Pods-FitzkyClient-FitzkyClientTests.release.xcconfig */;
+			baseConfigurationReference = CF0446CBE520B260A2C08273 /* Pods-FitNexusClient-FitNexusClientTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = FitzkyClientTests/Info.plist;
+				INFOPLIST_FILE = FitNexusClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1034,18 +1034,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitzkyClient.app/FitzkyClient";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNexusClient.app/FitNexusClient";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5450DC1C5B772919302FDD32 /* Pods-FitzkyClient.debug.xcconfig */;
+			baseConfigurationReference = 5450DC1C5B772919302FDD32 /* Pods-FitNexusClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "FitzkyClient/Fitzky Public User.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FitNexusClient/Fitzky Public User.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1108,7 +1108,7 @@
 					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
 					"$(SRCROOT)/ZoomSDK",
 				);
-				INFOPLIST_FILE = FitzkyClient/Info.plist;
+				INFOPLIST_FILE = FitNexusClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.2.1;
@@ -1120,7 +1120,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fitnexus.user;
 				PRODUCT_NAME = Fitzky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FitzkyClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitNexusClient-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1131,12 +1131,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F71314437583116F847D229F /* Pods-FitzkyClient.release.xcconfig */;
+			baseConfigurationReference = F71314437583116F847D229F /* Pods-FitNexusClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "FitzkyClient/Fitzky Public User.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FitNexusClient/Fitzky Public User.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1195,7 +1195,7 @@
 					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
 					"$(SRCROOT)/ZoomSDK",
 				);
-				INFOPLIST_FILE = FitzkyClient/Info.plist;
+				INFOPLIST_FILE = FitNexusClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 5.2.1;
@@ -1207,7 +1207,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fitnexus.user;
 				PRODUCT_NAME = Fitzky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FitzkyClient-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitNexusClient-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7s";
@@ -1217,7 +1217,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FEE67431ADDDC49082B4C7D /* Pods-FitzkyClient-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 8FEE67431ADDDC49082B4C7D /* Pods-FitNexusClient-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1228,14 +1228,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FitzkyClient-tvOS/Info.plist";
+				INFOPLIST_FILE = "FitNexusClient-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitzkyClient-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitNexusClient-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1245,7 +1245,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA40CDDE58ED991F9B72D97A /* Pods-FitzkyClient-tvOS.release.xcconfig */;
+			baseConfigurationReference = FA40CDDE58ED991F9B72D97A /* Pods-FitNexusClient-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1256,14 +1256,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FitzkyClient-tvOS/Info.plist";
+				INFOPLIST_FILE = "FitNexusClient-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitzkyClient-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitNexusClient-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1273,7 +1273,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EF36D18021129899D8BFED1 /* Pods-FitzkyClient-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 6EF36D18021129899D8BFED1 /* Pods-FitNexusClient-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1283,24 +1283,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FitzkyClient-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "FitNexusClient-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitzkyClient-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitNexusClient-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitzkyClient-tvOS.app/FitzkyClient-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNexusClient-tvOS.app/FitNexusClient-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9234B36F880FA6836C6994B1 /* Pods-FitzkyClient-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 9234B36F880FA6836C6994B1 /* Pods-FitNexusClient-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1310,17 +1310,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "FitzkyClient-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "FitNexusClient-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitzkyClient-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.FitNexusClient-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitzkyClient-tvOS.app/FitzkyClient-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNexusClient-tvOS.app/FitNexusClient-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
@@ -1507,7 +1507,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FitzkyClientTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FitNexusClientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1516,7 +1516,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FitzkyClient" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FitNexusClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1525,7 +1525,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitzkyClient-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitNexusClient-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1534,7 +1534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitzkyClient-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "FitNexusClient-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1543,7 +1543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FitzkyClient" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FitNexusClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  Void.swift
-//  FitzkyClient
+//  FitNexusClient
 //
 //  Created by Ceyentra Technologies on 2021-01-17.
 //

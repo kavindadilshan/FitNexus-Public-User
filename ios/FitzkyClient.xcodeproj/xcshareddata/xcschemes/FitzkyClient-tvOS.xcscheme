@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "FitzkyClient-tvOS.app"
-               BlueprintName = "FitzkyClient-tvOS"
-               ReferencedContainer = "container:FitzkyClient.xcodeproj">
+               BuildableName = "FitNexusClient-tvOS.app"
+               BlueprintName = "FitNexusClient-tvOS"
+               ReferencedContainer = "container:FitNexusClient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "FitzkyClient-tvOSTests.xctest"
-               BlueprintName = "FitzkyClient-tvOSTests"
-               ReferencedContainer = "container:FitzkyClient.xcodeproj">
+               BuildableName = "FitNexusClient-tvOSTests.xctest"
+               BlueprintName = "FitNexusClient-tvOSTests"
+               ReferencedContainer = "container:FitNexusClient.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "FitzkyClient-tvOS.app"
-            BlueprintName = "FitzkyClient-tvOS"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BuildableName = "FitNexusClient-tvOS.app"
+            BlueprintName = "FitNexusClient-tvOS"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "FitzkyClient-tvOS.app"
-            BlueprintName = "FitzkyClient-tvOS"
-            ReferencedContainer = "container:FitzkyClient.xcodeproj">
+            BuildableName = "FitNexusClient-tvOS.app"
+            BlueprintName = "FitNexusClient-tvOS"
+            ReferencedContainer = "container:FitNexusClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
