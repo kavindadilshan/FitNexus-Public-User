@@ -426,7 +426,7 @@ class App extends React.Component {
                                    style={{width: '100%', height: '100%', borderRadius: 25}}/>
                         </View>
 
-                        <Text style={styles.headerTitles}>Register with Fitzky</Text>
+                        <Text style={styles.headerTitles}>Register with FitNexus</Text>
 
                         <View style={!this.state.numValid ? {
                             ...styles.textFieldContainer,

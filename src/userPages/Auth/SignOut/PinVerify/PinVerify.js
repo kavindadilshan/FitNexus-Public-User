@@ -413,7 +413,7 @@ class App extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle="dark-content" backgroundColor={Color.white}/>
                 <Text style={styles.headerTitle}>Confirm your number</Text>
-                <Text style={styles.subHeadTitle}>Enter the 4-digit code Fitzky just send to</Text>
+                <Text style={styles.subHeadTitle}>Enter the 4-digit code FitNexus just send to</Text>
                 <Text style={{...styles.subHeadTitle, color: Color.gray}}>{this.state.number}</Text>
 
                 <View style={{alignItems: 'center', marginTop: '10%'}}>

@@ -651,7 +651,7 @@ class App extends React.Component {
                             <Image source={PadlockImg} style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
                         </View>
                         <Text style={{...styles.subTitle, width: '90%', color: Color.black}}>We process your cards
-                            securely with Stripe, which is PCI certified and holds the highest level of
+                            securely with Payhere, which is PCI certified and holds the highest level of
                             certification </Text>
                     </View>
 
