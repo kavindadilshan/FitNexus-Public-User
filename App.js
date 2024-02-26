@@ -46,10 +46,8 @@ import CheckOutForm from './src/userPages/Home/CheckOut/CheckOut';
 import RateForm from './src/userPages/Home/Review/Rate';
 import DualRatingForm from './src/userPages/Home/Review/RateBeforeCall/DualRate';
 import UpCommingClassesForm from './src/userPages/Home/Classes/ClassesDetails/UpCommingClasses';
-import InviteFriend from './src/userPages/Profile/InviteFriend';
 import ViewMoreForm from './src/userPages/Home/ViewMore';
 import HelpAndSupportForm from './src/userPages/Profile/Help&Support';
-import YourInvitesForm from './src/userPages/Profile/YourInvites';
 import UpdatePersonalInfo from './src/userPages/Profile/UpdateFiles/UpdatePersonalInformation';
 import CardAddedFailForm from './src/component/Actions/CardAddedFailAlert';
 import PackagesForm from './src/userPages/Home/Trainers/Instructor/Packages/Packages';
@@ -633,14 +631,6 @@ export const ContactStack2 = createStackNavigator({
             headerTitleStyle: {fontSize: 25, fontFamily: Font.SemiBold, width: '100%'},
         }),
     },
-    InviteFriendForm: {
-        screen: InviteFriend,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
     ViewMoreForm: {
         screen: ViewMoreForm,
         navigationOptions: ({navigation}) => ({
@@ -652,14 +642,6 @@ export const ContactStack2 = createStackNavigator({
     },
     HelpAndSupportForm: {
         screen: HelpAndSupportForm,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: styles.header,
-            headerLeft: <LeftIcon navigation={navigation}/>,
-            headerTitleStyle: {fontSize: 20, fontFamily: Font.SemiBold},
-        }),
-    },
-    YourInvitesForm: {
-        screen: YourInvitesForm,
         navigationOptions: ({navigation}) => ({
             headerStyle: styles.header,
             headerLeft: <LeftIcon navigation={navigation}/>,

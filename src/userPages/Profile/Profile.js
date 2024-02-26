@@ -17,19 +17,16 @@ import Edit from '../../assets/Profile/edit.png';
 import Camera from '../../assets/Profile/camera.png';
 import Arrow from '../../assets/Profile/rightArrow.png';
 import Password from '../../assets/Profile/password.png';
-import Birthday from '../../assets/Profile/birthdat.png';
+
 import Membership from '../../assets/Profile/membership.png';
-import Body from '../../assets/Profile/body.png';
-import Gemder from '../../assets/Profile/gender.png';
+
 import Payment from '../../assets/Profile/payment.png';
-import Discount from '../../assets/Profile/myDiscount.png';
+
 import Personal from '../../assets/Profile/personal.png';
 import axios from '../../axios/axios';
 import {SubUrl} from "../../axios/server_url";
 import {StorageStrings} from "../../constance/StorageStrings";
 import Logout from '../../assets/Profile/logout.png';
-import Country from '../../assets/Profile/country.png';
-import Invite from '../../assets/Profile/inviteFriends.png';
 import Help from '../../assets/Profile/helpAndSupport.png';
 import AlertMassage from "../../component/Actions/AlertMassage";
 import {Font} from "../../constance/AppFonts";
@@ -44,9 +41,9 @@ import {StackActions, NavigationActions} from 'react-navigation';
 import VerifyIMG from '../../assets/Profile/verify.png';
 import UnverifyIMG from '../../assets/Profile/unverify.png';
 import {AppEventsLogger} from "react-native-fbsdk";
-import analytics from "@react-native-firebase/analytics";
-import {CurrencyType} from "../../constance/AppCurrency";
+
 import {encryption} from "../../component/Encryption/Encrypt&Decrypt";
+
 import PrivacyIMG from '../../assets/Home/privacy.png'
 
 const options = {
@@ -86,27 +83,16 @@ class App extends React.Component {
                 name: 'Change Password',
                 parameter: 'password'
             },
-            {
-                image: Payment,
-                name: 'My Cards',
-                parameter: 'payment'
-            },
+            // {
+            //     image: Payment,
+            //     name: 'My Cards',
+            //     parameter: 'payment'
+            // },
             {
                 image: Membership,
                 name: 'My Memberships',
                 parameter: 'membership'
             },
-            // {
-            //     image: Discount,
-            //     name: 'My Discounts',
-            //     parameter: 'discount'
-            // },
-
-            // {
-            //     image: Invite,
-            //     name: 'Invite a friend',
-            //     parameter: 'invite'
-            // },
             {
                 image: Help,
                 name: 'Help & Support',
@@ -176,6 +162,7 @@ class App extends React.Component {
                 mobileNumber: [mobile.slice(0, 3), " ", mobile.slice(3, 5), " ", mobile.slice(5, 8), " ", mobile.slice(8)].join('')
             })
             this.profileDetails();
+            this.getEmailVerification(userId);
             this.getCountryCodeByName(country);
             this.getNotificationCounts(userId);
         })
@@ -261,6 +248,23 @@ class App extends React.Component {
             })
     }
 
+    /**
+     * check email verify api
+     * @param userId
+     * @returns {Promise<void>}
+     */
+    getEmailVerification = async (userId) => {
+        axios.get(SubUrl.get_email_verification + userId)
+            .then(async response => {
+                if (response.data.success) {
+                    const verify = response.data.body.emailVerified;
+                    this.setState({verify: verify, verifyVisibility: true})
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     /**
      * country code selection
@@ -457,6 +461,9 @@ class App extends React.Component {
             case 'privacy':
                 navigate("PrivacyPolicyForm");
                 break;
+            case 'subscription':
+                navigate('MySubscriptions');
+                break;
             case 'logout':
                 this.showAlert();
                 break;
@@ -515,7 +522,7 @@ class App extends React.Component {
     render() {
         const list = this.state.list.map((item, i) => (
             this.state.authType !== 'MOBILE' && item.name === 'Change Password' ? null :
-                !this.props.visible ? null :
+                !this.props.visible && item.parameter === 'subscription' ? null :
                     <TouchableOpacity style={styles.touchOuter} key={i}
                                       onPress={() => this.onButtonClick(item.parameter)}>
                         <View style={styles.iconContainer}>
@@ -608,18 +615,18 @@ class App extends React.Component {
                             <View style={{flexDirection: 'column', position: 'absolute', left: 20}}>
                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                     <Text style={styles.contactTitle}>E M A I L</Text>
-                                    {/*{this.state.verifyVisibility ? (*/}
-                                    {/*    <View style={{flexDirection: 'row', alignItems: 'center'}}>*/}
-                                    {/*        <Text style={this.state.verify ? styles.verifyText : {*/}
-                                    {/*            ...styles.verifyText,*/}
-                                    {/*            color: Color.red*/}
-                                    {/*        }}>{this.state.verify ? 'v e r i f i e d' : 'u n v e r i f i e d'}</Text>*/}
-                                    {/*        <View style={{width: 10, height: 10}}>*/}
-                                    {/*            <Image source={this.state.verify ? VerifyIMG : UnverifyIMG}*/}
-                                    {/*                   style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>*/}
-                                    {/*        </View>*/}
-                                    {/*    </View>*/}
-                                    {/*) : null}*/}
+                                    {this.state.verifyVisibility ? (
+                                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                            <Text style={this.state.verify ? styles.verifyText : {
+                                                ...styles.verifyText,
+                                                color: Color.red
+                                            }}>{this.state.verify ? 'v e r i f i e d' : 'u n v e r i f i e d'}</Text>
+                                            <View style={{width: 10, height: 10}}>
+                                                <Image source={this.state.verify ? VerifyIMG : UnverifyIMG}
+                                                       style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
+                                            </View>
+                                        </View>
+                                    ) : null}
                                 </View>
                                 <Text style={styles.dataStyle}>{this.state.email}</Text>
                             </View>

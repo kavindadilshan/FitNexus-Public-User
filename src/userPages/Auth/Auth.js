@@ -789,7 +789,7 @@ class App extends React.Component {
                     } : styles.alertContainer}>
                     <AlertMassage
                         show={this.state.showAlert}
-                        message={'There is no registered Fitzky user under this account. Do you wish to create new account?'}
+                        message={'There is no registered FitNexus user under this account. Do you wish to create new account?'}
                         onCancelPressed={() => this.hideAlert('yes')}
                         onConfirmPressed={() => this.hideAlert('no')}
                         cancelText={'Okay'}
