@@ -105,26 +105,27 @@ class App extends React.Component {
                     } else {
                         const list = this.state.list;
                         for (let i = 0; i < data.length; i++) {
-                            list.push({
-                                id: data[i].id,
-                                message: data[i].message,
-                                type: data[i].type,
-                                typeId: data[i].typeId,
-                                seen: data[i].seen,
-                                image: data[i].image !== null ? data[i].image : null,
-                                pastTime: data[i].dateTime,
-                                notifyDate: new Date(data[i].dateTime).toDateString(),
-                                sessionName: data[i].classSession !== null ? data[i].classSession.className : data[i].title,
-                            })
+                            if (new Date(data[i].dateTime).getFullYear()=== 2024){
+                                list.push({
+                                    id: data[i].id,
+                                    message: data[i].message,
+                                    type: data[i].type,
+                                    typeId: data[i].typeId,
+                                    seen: data[i].seen,
+                                    image: data[i].image !== null ? data[i].image : null,
+                                    pastTime: data[i].dateTime,
+                                    notifyDate: new Date(data[i].dateTime).toDateString(),
+                                    sessionName: data[i].classSession !== null ? data[i].classSession.className : data[i].title,
+                                })
+                            }
+
                         }
                         this.setState({
                             list: list
                         });
                         this.groupBy();
 
-                        if (response.data.body.last) {
-                            this.setState({finished: true, loading: false});
-                        }
+                        this.setState({finished: true, loading: false});
 
                     }
                 }
