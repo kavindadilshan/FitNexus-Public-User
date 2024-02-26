@@ -7,4 +7,4 @@ export const SINGLE_SESSION_PAYMENT = false;
 export const IS_STRIPE_ENABLED = false;
 
 export const PAYHERE_SANDBOX_STATUS = true;
-export const PAYHERE_MERCHANT_ID = "1223358"
+export const PAYHERE_MERCHANT_ID = "1226088"
