@@ -379,29 +379,29 @@ class App extends React.Component {
                             returnKeyType={'done'}
                             secureTextEntry={true}
                             onSubmitEditing={() => {
-                                this.referralCode.focus();
+                                this.onButtonClick('signup')
                             }}
                             errorMessage={!this.state.confirmPW.valid ? this.state.message1 : null}
                         />
-                        <View style={{justifyContent: 'flex-start', marginTop: 10, width: '95%'}}>
-                            <Text style={{
-                                ...styles.textStyle,
-                                marginLeft: 5,
-                                color: Color.inputBorderColor,
-                                fontSize: 13
-                            }}>Add a referral code if you have any to get a discount</Text>
-                        </View>
+                        {/*<View style={{justifyContent: 'flex-start', marginTop: 10, width: '95%'}}>*/}
+                        {/*    <Text style={{*/}
+                        {/*        ...styles.textStyle,*/}
+                        {/*        marginLeft: 5,*/}
+                        {/*        color: Color.inputBorderColor,*/}
+                        {/*        fontSize: 13*/}
+                        {/*    }}>Add a referral code if you have any to get a discount</Text>*/}
+                        {/*</View>*/}
 
-                        <InputItems
-                            refer={input => this.referralCode = input}
-                            placeholder={'Referral Code'}
-                            value={this.state.referralCode.value}
-                            onChangeText={this.onTextChange('referralCode')}
-                            onSubmitEditing={() => {
-                                this.onButtonClick('signup');
-                            }}
-                            errorMessage={!this.state.referralCode.valid ? this.state.referralCodeMsg : null}
-                        />
+                        {/*<InputItems*/}
+                        {/*    refer={input => this.referralCode = input}*/}
+                        {/*    placeholder={'Referral Code'}*/}
+                        {/*    value={this.state.referralCode.value}*/}
+                        {/*    onChangeText={this.onTextChange('referralCode')}*/}
+                        {/*    onSubmitEditing={() => {*/}
+                        {/*        this.onButtonClick('signup');*/}
+                        {/*    }}*/}
+                        {/*    errorMessage={!this.state.referralCode.valid ? this.state.referralCodeMsg : null}*/}
+                        {/*/>*/}
 
                         <Button
                             text="Sign Up"

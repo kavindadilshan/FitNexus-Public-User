@@ -495,33 +495,33 @@ class App extends React.Component {
                         </View>
 
 
-                        {Platform.OS === 'android' ? (
-                            <View style={{width: '100%', alignItems: 'center'}}>
-                                <SocialMediaButton
-                                    text={'Register with Google'}
-                                    onPress={() => this.onButtonClick('googleSignup')}
-                                    loading={this.state.googleLoading}
-                                    image={Google}
-                                    apple={false}
-                                />
+                        {/*{Platform.OS === 'android' ? (*/}
+                        {/*    <View style={{width: '100%', alignItems: 'center'}}>*/}
+                        {/*        <SocialMediaButton*/}
+                        {/*            text={'Register with Google'}*/}
+                        {/*            onPress={() => this.onButtonClick('googleSignup')}*/}
+                        {/*            loading={this.state.googleLoading}*/}
+                        {/*            image={Google}*/}
+                        {/*            apple={false}*/}
+                        {/*        />*/}
 
-                                <View style={{
-                                    width: '100%',
-                                    alignItems: 'center',
-                                    marginBottom: screenHeight / 100 * 10
-                                }}>
+                        {/*        <View style={{*/}
+                        {/*            width: '100%',*/}
+                        {/*            alignItems: 'center',*/}
+                        {/*            marginBottom: screenHeight / 100 * 10*/}
+                        {/*        }}>*/}
 
-                                    <SocialMediaButton
-                                        text={'Register with Facebook'}
-                                        onPress={() => this.onButtonClick('fb')}
-                                        loading={this.state.fbLoading}
-                                        image={FB}
-                                        apple={false}
-                                    />
+                        {/*            <SocialMediaButton*/}
+                        {/*                text={'Register with Facebook'}*/}
+                        {/*                onPress={() => this.onButtonClick('fb')}*/}
+                        {/*                loading={this.state.fbLoading}*/}
+                        {/*                image={FB}*/}
+                        {/*                apple={false}*/}
+                        {/*            />*/}
 
-                                </View>
-                            </View>
-                        ) : null}
+                        {/*        </View>*/}
+                        {/*    </View>*/}
+                        {/*) : null}*/}
 
                     </View>
 

@@ -577,33 +577,6 @@ class App extends React.Component {
 
 
                     </ScrollView>
-                    {this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).contentVisible ? (
-                        <View style={styles.bottomContainer}>
-
-                            {this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).btn1_visible ? (
-                                <TouchableOpacity style={{
-                                    ...styles.bottomMiniBtn,
-                                    width: this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).btn1_width,
-                                }}
-                                                  onPress={() => this.onButtonClick('membership')}>
-                                    <Text style={styles.bottomBtnText}>Pricing</Text>
-                                </TouchableOpacity>
-                            ) : null}
-
-                            {this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).btn2_visible ? (
-                                <TouchableOpacity style={{
-                                    ...styles.bottomMiniBtn,
-                                    marginLeft: this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).margin,
-                                    backgroundColor: Color.softBlue,
-                                    width: this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).btn2_width,
-                                }}
-                                                  onPress={() => this.onButtonClick('schedule')}>
-                                    <Text style={styles.bottomBtnText}>Schedule</Text>
-                                </TouchableOpacity>
-                            ) : null}
-
-                        </View>
-                    ) : null}
 
                 </View>
             ) : (
