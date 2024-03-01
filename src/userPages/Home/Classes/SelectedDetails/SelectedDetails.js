@@ -1019,33 +1019,6 @@ class App extends React.Component {
 
                                 </View>
 
-                                {/*please add after subscription dev*/}
-                                {/*&& this.state.role !== 'online'*/}
-
-                                {this.state.corporates === null && this.state.role !== 'online' ? (
-                                    <View style={{width: '100%', marginTop: 10}}>
-                                        <MembershipComponent
-                                            type={'Class'}
-                                            status={this.state.membershipBooked}
-                                            dayPassStatus={false}
-                                            onPress={() => this.onButtonClick('membership')}
-                                            membershipCount={this.state.membershipCount}
-                                            expireDate={0}
-                                            slot={0}
-                                            list={this.state.bookedMemberships}
-                                        />
-                                        {this.state.membershipBooked ? (
-                                            <View style={{width: '100%', alignItems: 'center'}}>
-                                                <TouchableOpacity style={styles.membershipBtn}
-                                                                  onPress={() => this.onButtonClick('membership')}>
-                                                    <Text style={styles.membershipBtnText}>View All Memberships</Text>
-                                                </TouchableOpacity>
-                                            </View>
-                                        ) : null}
-
-                                    </View>
-                                ) : null}
-
 
                                 <Image source={Line} style={{marginVertical: 10}}/>
 

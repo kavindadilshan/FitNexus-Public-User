@@ -516,10 +516,7 @@ class App extends React.Component {
         return (
             !this.state.loading ? (
                 <View
-                    style={this.checkButtonStatus(this.state.listMembership.length, this.state.listClasses.length).bottomVisible ? {
-                        ...styles.container,
-                        paddingBottom: 60
-                    } : styles.container}>
+                    style={styles.container}>
                     <StatusBar barStyle="dark-content" backgroundColor={Color.white}/>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View style={styles.headerContainer}>
@@ -613,19 +610,6 @@ class App extends React.Component {
 
                         <Image source={Line} style={{marginVertical: 10}}/>
 
-                        {this.state.role !== 'online' || ONLINE_MEMBERSHIP_VISIBLE ? (
-                            <MembershipComponent
-                                type={'Class'}
-                                status={this.state.membershipBooked}
-                                dayPassStatus={false}
-                                onPress={() => this.onButtonPress('membership')}
-                                membershipCount={this.state.membershipCount}
-                                expireDate={0}
-                                slot={100}
-                                list={this.state.bookedMemberships}
-                            />
-                        ) : null}
-
 
                         {this.state.listMembership.length !== 0 && !this.state.membershipBooked && this.state.role !== 'online' ? (
                             <View style={{width: '100%'}}>
@@ -690,24 +674,6 @@ class App extends React.Component {
 
 
                     </ScrollView>
-                    {this.checkButtonStatus(this.state.listMembership.length, this.state.listClasses.length).bottomVisible ? (
-                        <View style={styles.bottomContainer}>
-                            <TouchableOpacity style={{
-                                ...styles.bottomMiniBtn,
-                                width: this.checkButtonStatus(this.state.listMembership.length, this.state.listClasses.length).upcomingBtnSize
-                            }} onPress={() => this.onButtonPress('upcoming')}>
-                                <Text
-                                    style={styles.bottomBtnText}>{this.state.singleSessionReserve ? 'Buy Single Class' : 'Reserve a Session'}</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{
-                                ...styles.bottomMiniBtn2,
-                                width: this.checkButtonStatus(this.state.listMembership.length, this.state.listClasses.length).membeshipBtnSize,
-                                marginLeft: this.checkButtonStatus(this.state.listMembership.length, this.state.listClasses.length).margin
-                            }} onPress={() => this.onButtonPress('membership')}>
-                                <Text style={styles.bottomBtnText}>Buy Class packages</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ) : null}
 
                     <AlertMassage
                         show={this.state.guestAlert}

@@ -1136,63 +1136,11 @@ class App extends PureComponent {
     }
 
     dropDownChecker = (onlineVisible, corporateState, groupClassOnly) => {
-        if (onlineVisible) {
-            if (corporateState) {
-                if (groupClassOnly) {
-                    return [
-                        {label: 'Fitness Classes', value: 'OFFLINE'},
-                        {label: 'Online Fitness Classes', value: 'GROUP'},
-                        {label: 'Fitness Class Memberships', value: 'CLASS_MEMBERSHIP'},
-                        {label: 'Corporate Memberships', value: 'CORPORATE_MEMBERSHIP'},
-                        {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
-                        {label: 'Gym Day Passes', value: 'DAY_PASS'},
-                        {label: 'Online Coaching', value: 'COACHING'}
-                    ]
-                } else {
-                    return [
-                        {label: 'Fitness Classes', value: 'OFFLINE'},
-                        {label: 'Online Group Classes', value: 'GROUP'},
-                        {label: 'Online One-To-One Classes', value: 'PERSONAL'},
-                        {label: 'Fitness Class Memberships', value: 'CLASS_MEMBERSHIP'},
-                        {label: 'Corporate Memberships', value: 'CORPORATE_MEMBERSHIP'},
-                        {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
-                        {label: 'Gym Day Passes', value: 'DAY_PASS'},
-                        {label: 'Online Coaching', value: 'COACHING'}
-                    ]
-                }
-            } else {
-                if (groupClassOnly) {
-                    return [
-                        {label: 'Fitness Classes', value: 'OFFLINE'},
-                        {label: 'Online Fitness Classes', value: 'GROUP'},
-                        {label: 'Fitness Class Memberships', value: 'CLASS_MEMBERSHIP'},
-                        // {label: 'Online Class Memberships', value: 'ONLINE_CLASS_MEMBERSHIP'},
-                        {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
-                        {label: 'Gym Day Passes', value: 'DAY_PASS'},
-                        {label: 'Online Coaching', value: 'COACHING'}
-                    ]
-                } else {
-                    return [
-                        {label: 'Fitness Classes', value: 'OFFLINE'},
-                        {label: 'Online Group Classes', value: 'GROUP'},
-                        {label: 'Online One-To-One Classes', value: 'PERSONAL'},
-                        {label: 'Fitness Class Memberships', value: 'CLASS_MEMBERSHIP'},
-                        // {label: 'Online Class Memberships', value: 'ONLINE_CLASS_MEMBERSHIP'},
-                        {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
-                        {label: 'Gym Day Passes', value: 'DAY_PASS'},
-                        {label: 'Online Coaching', value: 'COACHING'}
-                    ]
-                }
-            }
-
-        } else {
-            return [
-                {label: 'Fitness Classes', value: 'OFFLINE'},
-                {label: 'Fitness Class Memberships', value: 'CLASS_MEMBERSHIP'},
-                {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
-                {label: 'Gym Day Passes', value: 'DAY_PASS'},
-            ]
-        }
+        return [
+            {label: 'Fitness Classes', value: 'OFFLINE'},
+            {label: 'Gym Memberships', value: 'GYM_MEMBERSHIP'},
+            {label: 'Gym Day Passes', value: 'DAY_PASS'},
+        ]
     }
 
     render() {
