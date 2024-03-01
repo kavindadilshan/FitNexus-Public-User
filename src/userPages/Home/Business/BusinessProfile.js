@@ -456,13 +456,10 @@ class App extends React.Component {
         return (
             !this.state.loading3 ? (
                 <View
-                    style={this.getBottomButtonState(this.state.membershipCount, this.state.averageClassesPerWeek).contentVisible ? {
-                        ...styles.container,
-                        paddingBottom: 60
-                    } : styles.container}>
+                    style={styles.container}>
                     <StatusBar barStyle="dark-content" backgroundColor={Color.white}/>
                     <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={false}
-                                contentContainerStyle={{paddingBottom: 70}}>
+                                >
                         <View style={styles.headerContainer}>
                             <View style={styles.imageHolders}>
                                 <Image source={this.state.image.uri !== null ? this.state.image : PlaceholderIMG}
@@ -562,18 +559,18 @@ class App extends React.Component {
 
                         </View>
 
-                        {/*   please add && this.state.role !== 'online' for after subscription dev*/}
-                        {this.state.membershipCount !== 0  && this.state.role !== 'online'? (
-                            <View style={styles.membershipContainer}>
-                                <Text style={{...styles.pharagraph, color: Color.white, marginLeft: 10}}>Choose from
-                                    {' ' + this.state.membershipCount + ' '}
-                                    Memberships</Text>
-                                <TouchableOpacity style={styles.viewAllBtn}
-                                                  onPress={() => this.onButtonClick('membership')}>
-                                    <Text style={{...styles.pharagraph, color: Color.white}}>View all</Text>
-                                </TouchableOpacity>
-                            </View>
-                        ) : null}
+                        {/*/!*   please add && this.state.role !== 'online' for after subscription dev*!/*/}
+                        {/*{this.state.membershipCount !== 0  && this.state.role !== 'online'? (*/}
+                        {/*    <View style={styles.membershipContainer}>*/}
+                        {/*        <Text style={{...styles.pharagraph, color: Color.white, marginLeft: 10}}>Choose from*/}
+                        {/*            {' ' + this.state.membershipCount + ' '}*/}
+                        {/*            Memberships</Text>*/}
+                        {/*        <TouchableOpacity style={styles.viewAllBtn}*/}
+                        {/*                          onPress={() => this.onButtonClick('membership')}>*/}
+                        {/*            <Text style={{...styles.pharagraph, color: Color.white}}>View all</Text>*/}
+                        {/*        </TouchableOpacity>*/}
+                        {/*    </View>*/}
+                        {/*) : null}*/}
 
 
                     </ScrollView>

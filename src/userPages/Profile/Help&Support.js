@@ -139,13 +139,6 @@ class App extends React.Component {
 
 
                         </View>
-                        <Text style={styles.textStyle2}>Need more information? Tell us how we can help you</Text>
-
-                        <ActionButton
-                            bgColor={ Color.themeColor}
-                            onPress={() => this.props.navigation.navigate('HelpSubmitForm')}
-                            btnContent={'Send a message'}
-                        />
 
                     </View>
                 </ScrollView>

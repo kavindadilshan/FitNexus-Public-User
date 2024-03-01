@@ -88,11 +88,11 @@ class App extends React.Component {
             //     name: 'My Cards',
             //     parameter: 'payment'
             // },
-            {
-                image: Membership,
-                name: 'My Memberships',
-                parameter: 'membership'
-            },
+            // {
+            //     image: Membership,
+            //     name: 'My Memberships',
+            //     parameter: 'membership'
+            // },
             {
                 image: Help,
                 name: 'Help & Support',
@@ -615,18 +615,6 @@ class App extends React.Component {
                             <View style={{flexDirection: 'column', position: 'absolute', left: 20}}>
                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                     <Text style={styles.contactTitle}>E M A I L</Text>
-                                    {this.state.verifyVisibility ? (
-                                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                            <Text style={this.state.verify ? styles.verifyText : {
-                                                ...styles.verifyText,
-                                                color: Color.red
-                                            }}>{this.state.verify ? 'v e r i f i e d' : 'u n v e r i f i e d'}</Text>
-                                            <View style={{width: 10, height: 10}}>
-                                                <Image source={this.state.verify ? VerifyIMG : UnverifyIMG}
-                                                       style={{width: '100%', height: '100%'}} resizeMode={'contain'}/>
-                                            </View>
-                                        </View>
-                                    ) : null}
                                 </View>
                                 <Text style={styles.dataStyle}>{this.state.email}</Text>
                             </View>
