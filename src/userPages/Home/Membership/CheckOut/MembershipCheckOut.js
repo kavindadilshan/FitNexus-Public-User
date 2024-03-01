@@ -1018,35 +1018,6 @@ class App extends React.Component {
 
                         </View>
 
-                        {this.state.list.length !== 0 ? (
-                            <View style={{marginHorizontal: 10, marginBottom: 10}}>
-                                <Text style={{...styles.mainTitle, fontSize: 16}}>Select a payment method</Text>
-                                <Text style={styles.subTitle}>Tap to select a card from below</Text>
-                            </View>
-                        ) : null}
-
-
-                        {this.state.loading2 ? (
-                            <ActivityIndicator
-                                animating
-                                size="large"
-                                style={{marginVertical: 10}}
-                            />
-                        ) : myCards}
-
-
-                        <View style={{width: '100%', alignItems: 'center'}}>
-                            {this.state.btnVisible ? (
-                                <TouchableOpacity style={styles.btnStyle} onPress={() => this.onButtonClick()}>
-                                    <Text style={styles.btnContent}>Continue</Text>
-                                </TouchableOpacity>
-                            ) : (
-                                <View style={{...styles.btnStyle, backgroundColor: Color.softDarkGray3}}>
-                                    <Text style={styles.btnContent}>Continue</Text>
-                                </View>
-                            )}
-                        </View>
-
 
                         <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
                             <View style={{width: '95%'}}>
